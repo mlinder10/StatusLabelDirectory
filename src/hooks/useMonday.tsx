@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { monday } from "../config/config";
 
 export default function useMonday() {
-  const [bid, setBid] = useState("569417951");
+  const [bid, setBid] = useState("");
 
   useEffect(() => {
     monday.listen("context", (res) => {
@@ -38,7 +38,7 @@ export default function useMonday() {
     }
 
     fetchData()
-  }, []);
+  }, [bid]);
 
   return { bid };
 }

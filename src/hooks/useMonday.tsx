@@ -15,7 +15,7 @@ export default function useMonday() {
     async function fetchData() {
       const data = await monday.api(`
       query {
-        board(id: 569417951) {
+        board(ids: [${bid}]) {
           id
           name
           settings_str

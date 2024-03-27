@@ -22,9 +22,11 @@ export default function useMonday() {
         }
       }
       `)
+      console.log(data)
       const columns = data.data.boards.columns
       for (const col of columns) {
-        console.log(JSON.parse(col.settings_str))
+        console.log(col)
+        // console.log(JSON.parse(col.settings_str))
       }
     }
 

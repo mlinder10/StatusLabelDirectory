@@ -17,9 +17,21 @@ export default function useMonday() {
       query {
         boards(ids: [${bid}]) {
           id
-          name
+          workspace_id
+          items_page {
+            items {
+              id
+              group {
+                id
+              }
+              column_values {
+                type
+                text
+                id
+              }
+            }
+          }
         }
-      }
       `)
       console.log(data)
     }

@@ -16,20 +16,8 @@ export default function useMonday() {
       const data = await monday.api(`
       query {
         boards(ids: [${bid}]) {
-          id
-          workspace_id
-          items_page {
-            items {
-              id
-              group {
-                id
-              }
-              column_values {
-                type
-                text
-                id
-              }
-            }
+          columns {
+            settings_str
           }
         }
       }

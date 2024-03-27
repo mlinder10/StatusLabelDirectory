@@ -32,6 +32,7 @@ export default function useMonday() {
             }
           }
         }
+      }
       `)
       console.log(data)
     }

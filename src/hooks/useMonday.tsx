@@ -15,12 +15,12 @@ export default function useMonday() {
     async function fetchData() {
       const data = await monday.api(`
       query {
-        board(ids: [${bid}]) {
+        boards(ids: [${bid}]) {
           id
           name
-          settings_str
         }
-        `)
+      }
+      `)
       console.log(data)
     }
 

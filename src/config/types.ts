@@ -10,11 +10,11 @@ export type ColumnSettings = {
   };
 };
 
-// Color is unique key
 export type Label = {
   boardId: string;
   columnId: string;
-  labelText: string;
-  labelColor: string;
-  labelBorder: string;
+  text: string;
+  color: string;
+  notes: string;
+  link: string;
 };

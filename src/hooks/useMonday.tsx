@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { monday } from "../config/config";
+import client, { monday } from "../config/config";
 import { ColumnSettings } from "../config/types";
 import { Label } from "../config/types";
 
 export default function useMonday() {
   const [bid, setBid] = useState("");
+  const [labels, setLabels] = useState<Label[]>([]);
 
   useEffect(() => {
     monday.listen("context", (res) => {
@@ -27,34 +28,61 @@ export default function useMonday() {
       }
       `);
 
-      let labels: Label[] = [];
+      let mondayLabels = [];
       const columns = data.data.boards[0].columns;
       for (const col of columns) {
         if (col.type !== "status") continue;
         const settings: ColumnSettings = JSON.parse(col.settings_str);
         console.log(settings)
         for (const [key, value] of Object.entries(settings.labels)) {
-          labels.push({
-            boardId: bid,
-            columnId: col.id,
-            labelText: value,
-            labelColor: settings.labels_colors[key as any].color,
-            labelBorder: settings.labels_colors[key as any].border,
+          mondayLabels.push({
+            bid: bid,
+            cid: col.id,
+            text: value,
+            color: settings.labels_colors[key as any].color,
           });
         }
       }
 
-      // const rs = await client.execute({
-      //   sql: "select * from labels where boardId = ?",
-      //   args: [bid],
-      // });
+      const rs = await client.execute({
+        sql: "select * from labels where bid = ?",
+        args: [bid],
+      });
 
-      // if (rs.rows )
-      // console.log(labels);
+      let labels: Label[] = []
+      for (const label of labels) {
+        let found = false
+        for (const row of rs.rows) {
+          if (row.cid === label.cid && (row.color === label.color || row.text === label.text)) {
+            found = true
+            labels.push({
+              bid,
+              cid: row.cid,
+              text: row.text as string,
+              color: row.color as string,
+              notes: row.notes as string,
+              link: row.link as string,
+            })
+          }
+        }
+
+        if (!found) {
+          labels.push({
+            bid,
+            cid: label.cid,
+            text: label.text,
+            color: label.color,
+            notes: "",
+            link: "",
+          })
+        }
+      }
+
+      setLabels(labels)
     }
 
     fetchData();
   }, [bid]);
 
-  return { bid };
+  return { labels };
 }

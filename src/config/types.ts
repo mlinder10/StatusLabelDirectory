@@ -11,8 +11,8 @@ export type ColumnSettings = {
 };
 
 export type Label = {
-  boardId: string;
-  columnId: string;
+  bid: string;
+  cid: string;
   text: string;
   color: string;
   notes: string;

@@ -33,7 +33,6 @@ export default function useMonday() {
       for (const col of columns) {
         if (col.type !== "status") continue;
         const settings: ColumnSettings = JSON.parse(col.settings_str);
-        console.log(settings)
         for (const [key, value] of Object.entries(settings.labels)) {
           mondayLabels.push({
             bid: bid,

@@ -19,6 +19,7 @@ export default function useMonday() {
         boards(ids: [${bid}]) {
           columns {
             id
+            type
             settings_str
           }
         }

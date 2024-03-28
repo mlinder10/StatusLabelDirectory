@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import client, { monday } from "../config/config";
+import { monday } from "../config/config";
 import { ColumnSettings } from "../config/types";
 import { Label } from "../config/types";
 
@@ -44,10 +44,11 @@ export default function useMonday() {
           }
         }
 
-        const rs = await client.execute({
-          sql: "select * from labels where bid = ?",
-          args: [bid],
-        });
+        // const rs = await client.execute({
+        //   sql: "select * from labels where bid = ?",
+        //   args: [bid],
+        // });
+        const rs = { rows: [] as any };
 
         let labels: Label[] = [];
         for (const label of labels) {

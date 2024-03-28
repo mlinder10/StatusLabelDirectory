@@ -10,6 +10,7 @@ export type ColumnSettings = {
   };
 };
 
+// Color is unique key
 export type Label = {
   boardId: string;
   columnId: string;

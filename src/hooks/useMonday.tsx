@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { monday } from "../config/config";
+// import { Label } from "../config/types";
 
 export default function useMonday() {
   const [bid, setBid] = useState("");
@@ -17,14 +18,18 @@ export default function useMonday() {
       query {
         boards(ids: [${bid}]) {
           columns {
+            id
             settings_str
           }
         }
       }
       `)
+
+      // let labels: Label[] = []
       const columns = data.data.boards[0].columns
       for (const col of columns) {
-        console.log(JSON.parse(col.settings_str))
+        const settings = JSON.parse(col.settings_str)
+        console.log(settings)
       }
     }
 

@@ -31,7 +31,8 @@ export default function useMonday() {
 
         let mondayLabels = [];
         const columns = data.data.boards[0]?.columns;
-        console.log("COLUMNS:", columns)
+        if (columns === undefined) return;
+
         for (const col of columns) {
           if (col.type !== "status") continue;
           const settings: ColumnSettings = JSON.parse(col.settings_str);
@@ -44,8 +45,6 @@ export default function useMonday() {
             });
           }
         }
-
-        console.log("MONDAY LABELS:", mondayLabels);
 
         // const rs = await client.execute({
         //   sql: "select * from labels where bid = ?",

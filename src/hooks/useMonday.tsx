@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { monday } from "../config/config";
-// import { Label } from "../config/types";
+import { ColumnSettings } from "../config/types";
+import { Label } from "../config/types";
 
 export default function useMonday() {
   const [bid, setBid] = useState("");
@@ -26,12 +27,23 @@ export default function useMonday() {
       }
       `)
 
-      // let labels: Label[] = []
+      let labels: Label[] = []
       const columns = data.data.boards[0].columns
       for (const col of columns) {
-        const settings = JSON.parse(col.settings_str)
-        console.log(settings)
+        if (col.type !== "status") continue;
+        const settings: ColumnSettings = JSON.parse(col.settings_str)
+        for (const [key, value] of Object.entries(settings.labels)) {
+          console.log(`KEY: ${key}\nVALUE: ${value}`)
+          labels.push({
+            boardId: bid,
+            columnId: col.id,
+            labelText: value,
+            labelColor: settings.labels_colors[key as any].color,
+            labelBorder: settings.labels_colors[key as any].border,
+          })
+        }
       }
+      console.log(labels)
     }
 
     fetchData()

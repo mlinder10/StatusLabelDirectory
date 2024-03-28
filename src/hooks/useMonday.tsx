@@ -56,7 +56,7 @@ export default function useMonday() {
         const rs = { rows: [] as any };
 
         let labels: Label[] = [];
-        for (const label of labels) {
+        for (const label of mondayLabels) {
           let found = false;
           for (const row of rs.rows) {
             if (

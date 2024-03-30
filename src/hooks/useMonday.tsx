@@ -32,24 +32,20 @@ export default function useMonday() {
         let mondayLabels = [];
         const columns = data.data.boards[0]?.columns;
         if (columns === undefined) return;
-        console.log("COLUMNS:", columns)
 
         for (const col of columns) {
           if (col.type !== "status") continue;
           const settings: ColumnSettings = JSON.parse(col.settings_str);
-          console.log(`SETTINGS: ${settings}`)
           for (const [key, value] of Object.entries(settings.labels)) {
-            console.log(`KEY: ${key}, VALUE: ${value}`)
             mondayLabels.push({
               bid: bid,
               cid: col.id,
+              index: key,
               text: value,
               color: settings.labels_colors[key as any].color,
             });
           }
         }
-
-        // console.log("MONDAY LABELS:", mondayLabels)
 
         // const rs = await client.execute({
         //   sql: "select * from labels where bid = ?",
@@ -69,6 +65,7 @@ export default function useMonday() {
               labels.push({
                 bid,
                 cid: row.cid,
+                index: row.index,
                 text: row.text as string,
                 color: row.color as string,
                 notes: row.notes as string,
@@ -82,6 +79,7 @@ export default function useMonday() {
               bid,
               cid: label.cid,
               text: label.text,
+              index: label.index,
               color: label.color,
               notes: "",
               link: "",
@@ -89,7 +87,7 @@ export default function useMonday() {
           }
         }
 
-        // console.log("LABELS:", labels)
+        console.log("LABELS:", labels)
         setLabels(labels);
       } catch (err) {
         console.error(err);

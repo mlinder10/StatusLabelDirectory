@@ -33,13 +33,13 @@ export function mergeWithDB(
   for (const label of mondayLabels) {
     let found = false;
     for (const row of rs.rows) {
-      if (row.cid === label.cid && row.index === label.index) {
+      if (row.cid === label.cid && row.ind === label.index) {
         found = true;
         labels.push({
           bid: label.bid,
           cid: label.cid,
-          index: label.index,
-          text: label.text,
+          ind: label.index,
+          txt: label.text,
           color: label.color,
           notes: row.notes as string,
           link: row.link as string,
@@ -50,8 +50,8 @@ export function mergeWithDB(
       labels.push({
         bid: label.bid,
         cid: label.cid,
-        index: label.index,
-        text: label.text,
+        ind: label.index,
+        txt: label.text,
         color: label.color,
         notes: "",
         link: "",
@@ -79,12 +79,12 @@ export async function updateLabel(label: Label, notes: string, link: string) {
   try {
     if (label.notes === "" && label.link === "") {
       await client.execute({
-        sql: "insert into labels (bid, cid, index, text, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
+        sql: "insert into labels (bid, cid, ind, txt, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
         args: [
           label.bid,
           label.cid,
-          label.index,
-          label.text,
+          label.ind,
+          label.txt,
           label.color,
           notes,
           link,
@@ -94,8 +94,8 @@ export async function updateLabel(label: Label, notes: string, link: string) {
     }
 
     await client.execute({
-      sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and index = ?",
-      args: [notes, link, label.bid, label.cid, label.index],
+      sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and ind = ?",
+      args: [notes, link, label.bid, label.cid, label.ind],
     });
   } catch (err) {
     console.error(err);

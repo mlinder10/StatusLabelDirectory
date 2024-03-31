@@ -13,8 +13,8 @@ export type ColumnSettings = {
 export type Label = {
   bid: string;
   cid: string;
-  index: string;
-  text: string;
+  ind: string;
+  txt: string;
   color: string;
   notes: string;
   link: string;

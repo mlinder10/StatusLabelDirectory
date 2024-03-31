@@ -7,7 +7,7 @@ export default function App() {
   return (
     <div className={theme} style={{ display: "flex", flexDirection: "column" }}>
       {labels.map((label) => (
-        <LabelView key={label.text} label={label} />
+        <LabelView key={label.cid + label.ind} label={label} />
       ))}
     </div>
   );

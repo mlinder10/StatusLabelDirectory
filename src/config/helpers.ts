@@ -1,5 +1,6 @@
 import { ResultSet } from "@libsql/client";
 import { ColumnSettings, Label, MondayLabel } from "./types";
+import client from "./config";
 
 export function readToLabels(
   columns: any[] | undefined,
@@ -71,3 +72,13 @@ query {
   }
 }
 `;
+
+export async function query() {
+  try {
+    await client.execute(
+      "create table if not exists labels (bid text, cid text, index text, text text, color text, notes text, link text)"
+    );
+  } catch (err: any) {
+    console.error(err);
+  }
+}

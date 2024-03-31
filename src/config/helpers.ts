@@ -76,7 +76,7 @@ query {
 export async function query() {
   try {
     await client.execute(
-      "create table if not exists labels (bid text, cid text, index text, text text, color text, notes text, link text)"
+      "create table if not exists labels (bid text, cid text, ind text, txt text, color text, notes text, link text)"
     );
   } catch (err: any) {
     console.error(err);

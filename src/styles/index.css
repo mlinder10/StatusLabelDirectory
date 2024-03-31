@@ -22,5 +22,5 @@
 }
 
 p {
-  color: #fff;
+  color: var(--txt);
 }

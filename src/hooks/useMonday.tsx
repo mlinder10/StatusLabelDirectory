@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { monday } from "../config/config";
-import { ColumnSettings } from "../config/types";
+import client, { monday } from "../config/config";
 import { Label } from "../config/types";
+import { labelQuery, mergeWithDB, readToLabels } from "../config/helpers";
 
 export default function useMonday() {
   const [bid, setBid] = useState("");
@@ -17,77 +17,17 @@ export default function useMonday() {
 
     async function fetchData() {
       try {
-        const data = await monday.api(`
-        query {
-          boards(ids: [${bid}]) {
-            columns {
-              id
-              type
-              settings_str
-            }
-          }
-        }
-        `);
-
-        let mondayLabels = [];
+        const data = await monday.api(labelQuery(bid));
         const columns = data.data.boards[0]?.columns;
-        if (columns === undefined) return;
+        const mondayLabels = readToLabels(columns, bid);
+        const rs = await client.execute({
+          sql: "select * from labels where bid = ?",
+          args: [bid],
+        });
+        // const rs = { rows: [] as any };
+        const labels = mergeWithDB(mondayLabels, rs);
 
-        for (const col of columns) {
-          if (col.type !== "status") continue;
-          const settings: ColumnSettings = JSON.parse(col.settings_str);
-          for (const [key, value] of Object.entries(settings.labels)) {
-            mondayLabels.push({
-              bid: bid,
-              cid: col.id,
-              index: key,
-              text: value,
-              color: settings.labels_colors[key as any].color,
-            });
-          }
-        }
-
-        // const rs = await client.execute({
-        //   sql: "select * from labels where bid = ?",
-        //   args: [bid],
-        // });
-        const rs = { rows: [] as any };
-
-        let labels: Label[] = [];
-        for (const label of mondayLabels) {
-          let found = false;
-          for (const row of rs.rows) {
-            if (
-              row.cid === label.cid &&
-              (row.color === label.color || row.text === label.text)
-            ) {
-              found = true;
-              labels.push({
-                bid,
-                cid: row.cid,
-                index: row.index,
-                text: row.text as string,
-                color: row.color as string,
-                notes: row.notes as string,
-                link: row.link as string,
-              });
-            }
-          }
-
-          if (!found) {
-            labels.push({
-              bid,
-              cid: label.cid,
-              text: label.text,
-              index: label.index,
-              color: label.color,
-              notes: "",
-              link: "",
-            });
-          }
-        }
-
-        console.log("LABELS:", labels)
+        console.log("LABELS:", labels);
         setLabels(labels);
       } catch (err) {
         console.error(err);
@@ -97,5 +37,22 @@ export default function useMonday() {
     fetchData();
   }, [bid]);
 
-  return { labels };
+  async function updateLabel(label: Label, notes: string, link: string) {
+    if (notes === "" || link === "") return;
+
+    if (label.notes === "" && label.link === "") {
+      await client.execute({
+        sql: "insert into labels (bid, cid, index, text, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
+        args: [label.bid, label.cid, label.index, label.text, label.color, notes, link],
+      });
+      return;
+    }
+
+    await client.execute({
+      sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and index = ?",
+      args: [notes, link, label.bid, label.cid, label.index],
+    })
+  }
+
+  return { labels, updateLabel };
 }

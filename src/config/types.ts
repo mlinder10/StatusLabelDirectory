@@ -19,3 +19,11 @@ export type Label = {
   notes: string;
   link: string;
 };
+
+export type MondayLabel = {
+  bid: string;
+  cid: string;
+  index: string;
+  text: string;
+  color: string;
+};

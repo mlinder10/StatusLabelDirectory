@@ -9,7 +9,7 @@ export function readToLabels(
 
   let labels: MondayLabel[] = [];
   for (const col of columns) {
-    if (col.type === "status") continue;
+    if (col.type !== "status") continue;
     const settings: ColumnSettings = JSON.parse(col.settings_str);
     for (const [key, value] of Object.entries(settings.labels)) {
       labels.push({

@@ -1,6 +1,5 @@
 import { ResultSet } from "@libsql/client";
 import { ColumnSettings, Label, MondayLabel } from "./types";
-import client from "./config";
 
 export function readToLabels(
   columns: any[] | undefined,

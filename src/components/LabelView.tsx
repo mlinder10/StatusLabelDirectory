@@ -18,7 +18,7 @@ export default function LabelView({ label }: LabelViewProps) {
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
       >
         <p style={{ backgroundColor: label.color }}>{label.color}</p>
-        <p>{label.text}</p>
+        <p>{label.txt}</p>
         <p>{label.notes}</p>
         <p>{label.link}</p>
         <div>
@@ -39,7 +39,7 @@ export default function LabelView({ label }: LabelViewProps) {
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
       >
         <p style={{ backgroundColor: label.color }}>{label.color}</p>
-        <p>{label.text}</p>
+        <p>{label.txt}</p>
         <input
           type="text"
           value={notes}

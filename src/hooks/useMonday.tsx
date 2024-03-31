@@ -39,22 +39,5 @@ export default function useMonday() {
     fetchData();
   }, [bid]);
 
-  async function updateLabel(label: Label, notes: string, link: string) {
-    if (notes === "" || link === "") return;
-
-    if (label.notes === "" && label.link === "") {
-      await client.execute({
-        sql: "insert into labels (bid, cid, index, text, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
-        args: [label.bid, label.cid, label.index, label.text, label.color, notes, link],
-      });
-      return;
-    }
-
-    await client.execute({
-      sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and index = ?",
-      args: [notes, link, label.bid, label.cid, label.index],
-    })
-  }
-
-  return { theme, labels, updateLabel };
+  return { theme, labels };
 }

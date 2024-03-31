@@ -1,5 +1,6 @@
 import { ResultSet } from "@libsql/client";
 import { ColumnSettings, Label, MondayLabel } from "./types";
+import client from "./config";
 
 export function readToLabels(
   columns: any[] | undefined,
@@ -71,3 +72,32 @@ query {
   }
 }
 `;
+
+export async function updateLabel(label: Label, notes: string, link: string) {
+  if (notes === "" || link === "") return;
+
+  try {
+    if (label.notes === "" && label.link === "") {
+      await client.execute({
+        sql: "insert into labels (bid, cid, index, text, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
+        args: [
+          label.bid,
+          label.cid,
+          label.index,
+          label.text,
+          label.color,
+          notes,
+          link,
+        ],
+      });
+      return;
+    }
+
+    await client.execute({
+      sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and index = ?",
+      args: [notes, link, label.bid, label.cid, label.index],
+    });
+  } catch (err) {
+    console.error(err);
+  }
+}

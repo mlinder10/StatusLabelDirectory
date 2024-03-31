@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { Label } from "../config/types";
 import { VscClose, VscEdit, VscSave } from "react-icons/vsc";
+import { updateLabel } from "../config/helpers";
 
 type LabelViewProps = {
   label: Label;
-  updateLabel: (label: Label, notes: string, link: string) => Promise<void>;
 };
 
-export default function LabelView({ label, updateLabel }: LabelViewProps) {
+export default function LabelView({ label }: LabelViewProps) {
   const [editing, setEditing] = useState(false);
 
   return editing ? <Editing /> : <Viewing />;
 
   function Viewing() {
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}>
+      <div
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
+      >
         <p style={{ backgroundColor: label.color }}>{label.color}</p>
         <p>{label.text}</p>
         <p>{label.notes}</p>

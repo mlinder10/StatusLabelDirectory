@@ -27,3 +27,5 @@ export type MondayLabel = {
   text: string;
   color: string;
 };
+
+export type Themes = "light" | "dark" | "black";

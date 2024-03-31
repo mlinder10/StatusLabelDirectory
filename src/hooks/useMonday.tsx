@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import client, { monday } from "../config/config";
-import { Label } from "../config/types";
+import { Label, Themes } from "../config/types";
 import { labelQuery, mergeWithDB, readToLabels } from "../config/helpers";
 
 export default function useMonday() {
   const [bid, setBid] = useState("");
+  const [theme, setTheme] = useState<Themes>("dark")
   const [labels, setLabels] = useState<Label[]>([]);
 
   useEffect(() => {
     monday.listen("context", (res) => {
       if (!res.data.user.isViewOnly) {
         const unchecked = res.data as any;
+        setTheme(unchecked.theme)
         setBid(unchecked.boardId.toString());
       }
     });
@@ -54,5 +56,5 @@ export default function useMonday() {
     })
   }
 
-  return { labels, updateLabel };
+  return { theme, labels, updateLabel };
 }

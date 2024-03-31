@@ -6,6 +6,21 @@
   margin: 0;
 }
 
+.light {
+  --txt: #000;
+  --bg: #fff;
+}
+
+.dark {
+  --txt: #fff;
+  --bg: #000;
+}
+
+.black {
+  --txt: #fff;
+  --bg: #000;
+}
+
 p {
   color: #fff;
 }

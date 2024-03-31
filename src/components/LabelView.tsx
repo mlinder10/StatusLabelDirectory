@@ -14,7 +14,7 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
 
   function Viewing() {
     return (
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}>
         <p style={{ backgroundColor: label.color }}>{label.color}</p>
         <p>{label.text}</p>
         <p>{label.notes}</p>

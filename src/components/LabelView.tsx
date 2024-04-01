@@ -34,6 +34,11 @@ export default function LabelView({ label }: LabelViewProps) {
     const [notes, setNotes] = useState(label.notes);
     const [link, setLink] = useState(label.link);
 
+    function handlePost() {
+      updateLabel(label, notes, link);
+      setEditing(false);
+    }
+
     return (
       <div
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
@@ -60,7 +65,7 @@ export default function LabelView({ label }: LabelViewProps) {
             gap: "1rem",
           }}
         >
-          <button onClick={() => updateLabel(label, notes, link)}>
+          <button onClick={handlePost}>
             <VscSave />
           </button>
           <button onClick={() => setEditing(false)}>

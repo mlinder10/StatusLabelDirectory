@@ -26,7 +26,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
 
   function Labels() {
     return (
-      <div>
+      <div className={styles.labels}>
         {column.labels.map((label) => (
           <LabelView key={label.ind} label={label} updateLabel={updateLabel} />
         ))}

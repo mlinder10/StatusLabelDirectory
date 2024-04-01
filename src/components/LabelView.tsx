@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Label } from "../config/types";
 import { VscClose, VscEdit, VscSave } from "react-icons/vsc";
-import { updateLabel } from "../config/helpers";
+import { postLabel } from "../config/helpers";
 
 type LabelViewProps = {
   label: Label;
+  updateLabel: (cid: string, ind: string, notes: string, link: string) => void;
 };
 
-export default function LabelView({ label }: LabelViewProps) {
+export default function LabelView({ label, updateLabel }: LabelViewProps) {
   const [editing, setEditing] = useState(false);
 
   return editing ? <Editing /> : <Viewing />;
@@ -35,8 +36,13 @@ export default function LabelView({ label }: LabelViewProps) {
     const [link, setLink] = useState(label.link);
 
     function handlePost() {
-      updateLabel(label, notes, link);
-      setEditing(false);
+      try {
+        postLabel(label, notes, link);
+        setEditing(false);
+        updateLabel(label.cid, label.ind, notes, link);
+      } catch (err) {
+        console.error(err);
+      }
     }
 
     return (

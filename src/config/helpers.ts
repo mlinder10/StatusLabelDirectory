@@ -73,31 +73,27 @@ query {
 }
 `;
 
-export async function updateLabel(label: Label, notes: string, link: string) {
-  if (notes === "" || link === "") return;
+export async function postLabel(label: Label, notes: string, link: string) {
+  if (notes === "" && link === "") return;
 
-  try {
-    if (label.notes === "" && label.link === "") {
-      await client.execute({
-        sql: "insert into labels (bid, cid, ind, txt, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
-        args: [
-          label.bid,
-          label.cid,
-          label.ind,
-          label.txt,
-          label.color,
-          notes,
-          link,
-        ],
-      });
-      return;
-    }
-
+  if (label.notes === "" && label.link === "") {
     await client.execute({
-      sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and ind = ?",
-      args: [notes, link, label.bid, label.cid, label.ind],
+      sql: "insert into labels (bid, cid, ind, txt, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
+      args: [
+        label.bid,
+        label.cid,
+        label.ind,
+        label.txt,
+        label.color,
+        notes,
+        link,
+      ],
     });
-  } catch (err) {
-    console.error(err);
+    return;
   }
+
+  await client.execute({
+    sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and ind = ?",
+    args: [notes, link, label.bid, label.cid, label.ind],
+  });
 }

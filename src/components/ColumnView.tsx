@@ -11,8 +11,8 @@ export default function ColumnView({ column }: ColumnViewProps) {
     <div className={styles.column}>
       <button>
         <VscArrowRight />
-        <p>{column.cid}</p>
       </button>
+      <p>{column.cid}</p>
     </div>
   );
 }

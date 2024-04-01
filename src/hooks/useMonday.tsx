@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import client, { monday } from "../config/config";
-import { Label, Themes } from "../config/types";
+import { Column, Themes } from "../config/types";
 import { labelQuery, mergeWithDB, readToLabels } from "../config/helpers";
 
 export default function useMonday() {
   const [bid, setBid] = useState("");
   const [theme, setTheme] = useState<Themes>("dark");
-  const [labels, setLabels] = useState<Label[]>([]);
+  const [columns, setColumns] = useState<Column[]>([]);
 
   useEffect(() => {
     monday.listen("context", (res) => {
@@ -29,7 +29,7 @@ export default function useMonday() {
         });
         const labels = mergeWithDB(mondayLabels, rs);
         console.log("LABELS:", labels);
-        setLabels(labels);
+        setColumns(labels);
       } catch (err) {
         console.error(err);
       }
@@ -39,16 +39,20 @@ export default function useMonday() {
   }, [bid]);
 
   function updateLabel(cid: string, ind: string, notes: string, link: string) {
-    let copy = [...labels];
-    for (const label of copy) {
-      if (label.cid === cid && label.ind === ind) {
-        label.notes = notes;
-        label.link = link;
-        break;
+    let copy = [...columns];
+    for (const col of copy) {
+      if (col.cid === cid) {
+        for (const label of col.labels) {
+          if (label.ind === ind) {
+            label.notes = notes;
+            label.link = link;
+            break;
+          }
+        }
       }
     }
-    setLabels(copy);
+    setColumns(copy);
   }
 
-  return { theme, labels, updateLabel };
+  return { theme, columns, updateLabel };
 }

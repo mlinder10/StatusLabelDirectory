@@ -1,13 +1,13 @@
-import LabelView from "./components/LabelView";
+import ColumnView from "./components/ColumnView";
 import useMonday from "./hooks/useMonday";
 
 export default function App() {
-  const { theme, labels, updateLabel } = useMonday();
+  const { theme, columns } = useMonday();
 
   return (
     <div className={theme} style={{ display: "flex", flexDirection: "column" }}>
-      {labels.map((label) => (
-        <LabelView key={label.cid + label.ind} label={label} updateLabel={updateLabel} />
+      {columns.map((col) => (
+        <ColumnView key={col.cid} column={col} />
       ))}
     </div>
   );

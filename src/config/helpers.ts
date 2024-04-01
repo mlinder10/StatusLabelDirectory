@@ -1,15 +1,23 @@
 import { ResultSet } from "@libsql/client";
-import { ColumnSettings, Label, MondayLabel } from "./types";
+import {
+  Column,
+  ColumnSettings,
+  Label,
+  MondayColumn,
+  MondayLabel,
+} from "./types";
 import client from "./config";
 
 export function readToLabels(
   columns: any[] | undefined,
   bid: string
-): MondayLabel[] {
+): MondayColumn[] {
   if (columns === undefined) return [];
 
-  let labels: MondayLabel[] = [];
+  let mondayColumns: MondayColumn[] = [];
   for (const col of columns) {
+    console.log("COLUMN: ", col);
+    let labels: MondayLabel[] = [];
     if (col.type !== "status") continue;
     const settings: ColumnSettings = JSON.parse(col.settings_str);
     for (const [key, value] of Object.entries(settings.labels)) {
@@ -21,44 +29,51 @@ export function readToLabels(
         color: settings.labels_colors[key as any].color,
       });
     }
+    mondayColumns.push({ bid, cid: col.id, labels });
   }
-  return labels;
+  return mondayColumns;
 }
 
 export function mergeWithDB(
-  mondayLabels: MondayLabel[],
+  mondayColumns: MondayColumn[],
   rs: ResultSet
-): Label[] {
-  let labels: Label[] = [];
-  for (const label of mondayLabels) {
-    let found = false;
-    for (const row of rs.rows) {
-      if (row.cid === label.cid && row.ind === label.index) {
-        found = true;
+): Column[] {
+  let columns: Column[] = [];
+
+  for (const col of mondayColumns) {
+    let labels: Label[] = [];
+    for (const label of col.labels) {
+      let found = false;
+      for (const row of rs.rows) {
+        if (row.cid === label.cid && row.ind === label.index) {
+          found = true;
+          labels.push({
+            bid: label.bid,
+            cid: label.cid,
+            ind: label.index,
+            txt: label.text,
+            color: label.color,
+            notes: row.notes as string,
+            link: row.link as string,
+          });
+        }
+      }
+      if (!found) {
         labels.push({
           bid: label.bid,
           cid: label.cid,
           ind: label.index,
           txt: label.text,
           color: label.color,
-          notes: row.notes as string,
-          link: row.link as string,
+          notes: "",
+          link: "",
         });
       }
     }
-    if (!found) {
-      labels.push({
-        bid: label.bid,
-        cid: label.cid,
-        ind: label.index,
-        txt: label.text,
-        color: label.color,
-        notes: "",
-        link: "",
-      });
-    }
+    columns.push({ bid: col.bid, cid: col.cid, labels });
   }
-  return labels;
+
+  return columns;
 }
 
 export const labelQuery = (bid: string) => `

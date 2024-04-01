@@ -1,6 +1,6 @@
 import { VscArrowRight } from "react-icons/vsc";
 import { Column } from "../config/types";
-// import styles from "../styles/column.module.css";
+import styles from "../styles/column.module.css";
 
 type ColumnViewProps = {
   column: Column;
@@ -8,7 +8,7 @@ type ColumnViewProps = {
 
 export default function ColumnView({ column }: ColumnViewProps) {
   return (
-    <div>
+    <div className={styles.column}>
       <button>
         <VscArrowRight />
         <p>{column.cid}</p>

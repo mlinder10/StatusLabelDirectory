@@ -16,7 +16,6 @@ export function readToLabels(
 
   let mondayColumns: MondayColumn[] = [];
   for (const col of columns) {
-    console.log("COLUMN: ", col);
     let labels: MondayLabel[] = [];
     if (col.type !== "status") continue;
     const settings: ColumnSettings = JSON.parse(col.settings_str);

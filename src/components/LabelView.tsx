@@ -1,7 +1,14 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Label } from "../config/types";
-import { VscClose, VscEdit, VscSave } from "react-icons/vsc";
 import { postLabel } from "../config/helpers";
+
+function debounce(this: any, func: (...args: any[]) => void, delay: number) {
+  let timeoutId: NodeJS.Timeout;
+  return (...args: any[]) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => func.apply(this, args), delay);
+  };
+}
 
 type LabelViewProps = {
   label: Label;
@@ -9,76 +16,37 @@ type LabelViewProps = {
 };
 
 export default function LabelView({ label, updateLabel }: LabelViewProps) {
-  const [editing, setEditing] = useState(false);
+  const [notes, setNotes] = useState(label.notes);
+  const [link, setLink] = useState(label.link);
 
-  return editing ? <Editing /> : <Viewing />;
-
-  function Viewing() {
-    return (
-      <div
-        style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
-      >
-        <p style={{ backgroundColor: label.color }}>{label.color}</p>
-        <p>{label.txt}</p>
-        <p>{label.notes}</p>
-        <p>{label.link}</p>
-        <div>
-          <button onClick={() => setEditing(true)}>
-            <VscEdit />
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  function Editing() {
-    const [notes, setNotes] = useState(label.notes);
-    const [link, setLink] = useState(label.link);
-
-    function handlePost() {
-      try {
-        postLabel(label, notes, link);
-        setEditing(false);
-        updateLabel(label.cid, label.ind, notes, link);
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    return (
-      <div
-        style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}
-      >
-        <p style={{ backgroundColor: label.color }}>{label.color}</p>
-        <p>{label.txt}</p>
-        <input
-          type="text"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          placeholder="Notes"
-        />
-        <input
-          type="text"
-          value={link}
-          onChange={(e) => setLink(e.target.value)}
-          placeholder="Link"
-        />
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "1rem",
-          }}
-        >
-          <button onClick={handlePost}>
-            <VscSave />
-          </button>
-          <button onClick={() => setEditing(false)}>
-            <VscClose />
-          </button>
-        </div>
-      </div>
-    );
-  }
+  const debouncedSearch = useCallback(
+    debounce((notes, link) => {
+      postLabel(label, notes, link);
+      updateLabel(label.cid, label.ind, notes, link);
+    }, 1000),
+    []
+  );
+  
+  useEffect(() => {
+    debouncedSearch(notes, link);
+  }, [notes, link]);
+  
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+      <p style={{ backgroundColor: label.color }}>{label.color}</p>
+      <p>{label.txt}</p>
+      <input
+        type="text"
+        value={notes}
+        onChange={(e) => setNotes(e.target.value)}
+        placeholder="Notes"
+      />
+      <input
+        type="text"
+        value={link}
+        onChange={(e) => setLink(e.target.value)}
+        placeholder="Link"
+      />
+    </div>
+  );
 }

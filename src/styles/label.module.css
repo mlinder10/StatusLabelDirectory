@@ -2,7 +2,11 @@
   display: flex;
 }
 
+.title {
+    width: 10vw;
+}
+
 .color {
-    width: 4em;
-    height: 1.5em;
+  width: 10vw;
+  aspect-ratio: 1 / 2;
 }

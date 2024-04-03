@@ -15,7 +15,7 @@ export type Column = {
   cid: string;
   title: string;
   labels: Label[];
-}
+};
 
 export type Label = {
   bid: string;
@@ -32,7 +32,7 @@ export type MondayColumn = {
   cid: string;
   title: string;
   labels: MondayLabel[];
-}
+};
 
 export type MondayLabel = {
   bid: string;

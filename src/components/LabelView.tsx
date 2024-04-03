@@ -26,7 +26,7 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
   
   return (
     <div className={styles.container}>
-      <p>{label.txt}</p>
+      <p className={styles.title}>{label.txt}</p>
       <div className={styles.color} style={{ backgroundColor: label.color }} />
       <input
         type="text"

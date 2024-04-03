@@ -3,17 +3,15 @@
   flex-direction: column;
 }
 
-.upper {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: #fff;
-}
-
 .button {
   border: none;
   outline: none;
   background-color: transparent;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  gap: 1em;
 }
 
 .arrow {

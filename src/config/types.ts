@@ -13,6 +13,7 @@ export type ColumnSettings = {
 export type Column = {
   bid: string;
   cid: string;
+  title: string;
   labels: Label[];
 }
 
@@ -29,6 +30,7 @@ export type Label = {
 export type MondayColumn = {
   bid: string;
   cid: string;
+  title: string;
   labels: MondayLabel[];
 }
 

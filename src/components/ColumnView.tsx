@@ -18,7 +18,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
         <button onClick={() => setIsOpen(!isOpen)}>
           <VscArrowRight />
         </button>
-        <p>{column.cid}</p>
+        <p>{column.title}</p>
       </div>
       {isOpen && <Labels />}
     </div>

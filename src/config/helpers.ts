@@ -28,7 +28,7 @@ export function readToLabels(
         color: settings.labels_colors[key as any].color,
       });
     }
-    mondayColumns.push({ bid, cid: col.id, labels });
+    mondayColumns.push({ bid, cid: col.id, title: col.title, labels });
   }
   return mondayColumns;
 }
@@ -69,7 +69,7 @@ export function mergeWithDB(
         });
       }
     }
-    columns.push({ bid: col.bid, cid: col.cid, labels });
+    columns.push({ bid: col.bid, cid: col.cid, title: col.title, labels });
   }
 
   return columns;
@@ -80,6 +80,7 @@ query {
   boards(ids: [${bid}]) {
     columns {
       id
+      title
       type
       settings_str
     }

@@ -16,7 +16,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
     <div className={styles.column}>
       <div className={styles.upper}>
         <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
-          <VscArrowRight className={styles.arrow} />
+          <VscArrowRight className={`${styles.arrow} ${isOpen && styles.open}`} />
         </button>
         <p className={styles.title}>{column.title}</p>
       </div>

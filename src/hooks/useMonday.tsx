@@ -21,6 +21,7 @@ export default function useMonday() {
       try {
         if (!bid || bid === "") return;
         const data = await monday.api(labelQuery(bid));
+        console.log("DATA:", data);
         const columns = data.data.boards[0]?.columns;
         const mondayLabels = readToLabels(columns, bid);
         const rs = await client.execute({

@@ -27,9 +27,9 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
     []
   );
   
-  useEffect(() => {
-    debouncedSearch(notes, link);
-  }, [notes, link]);
+  // useEffect(() => {
+  //   debouncedSearch(notes, link);
+  // }, [notes, link]);
   
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>

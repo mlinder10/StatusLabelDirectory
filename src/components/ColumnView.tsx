@@ -15,10 +15,10 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
   return (
     <div className={styles.column}>
       <div className={styles.upper}>
-        <button onClick={() => setIsOpen(!isOpen)}>
-          <VscArrowRight />
+        <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
+          <VscArrowRight className={styles.arrow} />
         </button>
-        <p>{column.title}</p>
+        <p className={styles.title}>{column.title}</p>
       </div>
       {isOpen && <Labels />}
     </div>

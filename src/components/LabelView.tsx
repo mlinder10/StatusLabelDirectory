@@ -15,9 +15,14 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
   useEffect(() => {
     console.log(notes, link)
   }, [notes, link]);
+
+  function handleChange() {
+    postLabel(label, notes, link);
+    updateLabel(label.cid, label.ind, notes, link);
+  }
   
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr" }}>
       <p style={{ backgroundColor: label.color }}>{label.color}</p>
       <p>{label.txt}</p>
       <input
@@ -32,6 +37,7 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
         onChange={(e) => setLink(e.target.value)}
         placeholder="Link"
       />
+      <button onClick={handleChange}>Save</button>
     </div>
   );
 }

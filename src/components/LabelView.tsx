@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Label } from "../config/types";
 import { postLabel } from "../config/helpers";
-
+import styles from "../styles/label.module.css"
 
 type LabelViewProps = {
   label: Label;
@@ -25,9 +25,9 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
 
   
   return (
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
+    <div className={styles.container}>
       <p>{label.txt}</p>
-      <div style={{ backgroundColor: label.color }} />
+      <div className={styles.color} style={{ backgroundColor: label.color }} />
       <input
         type="text"
         value={notes}

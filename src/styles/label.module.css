@@ -1,0 +1,8 @@
+.container {
+  display: flex;
+}
+
+.color {
+    width: 4em;
+    height: 1.5em;
+}

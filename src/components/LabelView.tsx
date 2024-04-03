@@ -26,8 +26,8 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
   
   return (
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr" }}>
-      <p style={{ backgroundColor: label.color }}>{label.color}</p>
       <p>{label.txt}</p>
+      <div style={{ backgroundColor: label.color }} />
       <input
         type="text"
         value={notes}

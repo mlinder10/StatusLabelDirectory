@@ -36,8 +36,13 @@ export default function LabelView({
 
   return (
     <div className={styles.container}>
-      <div className={styles.color} style={{ backgroundColor: label.color }} />
-      <p className={styles.title}>{label.txt}</p>
+      <div className={styles.label}>
+        <div
+          className={styles.color}
+          style={{ backgroundColor: label.color }}
+        />
+        <p className={styles.title}>{label.txt}</p>
+      </div>
       <input
         type="text"
         value={notes}

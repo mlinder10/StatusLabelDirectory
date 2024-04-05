@@ -37,7 +37,6 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
     return (
       <div className={styles.labels}>
         <div className={styles.header}>
-          <div />
           <p>Title</p>
           <p>Notes</p>
           <p>Link</p>

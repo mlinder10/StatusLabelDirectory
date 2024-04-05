@@ -6,9 +6,11 @@ import styles from "../styles/label.module.css"
 type LabelViewProps = {
   label: Label;
   updateLabel: (cid: string, ind: string, notes: string, link: string) => void;
+  hidden: string[];
+  hide: (ind: string) => void;
 };
 
-export default function LabelView({ label, updateLabel }: LabelViewProps) {
+export default function LabelView({ label, updateLabel, hidden, hide }: LabelViewProps) {
   const [notes, setNotes] = useState(label.notes);
   const [link, setLink] = useState(label.link);
 
@@ -23,6 +25,7 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
     return () => clearTimeout(timeoutId);
   }, [notes, link]);
 
+  if (hidden.includes(label.ind)) return null;
   
   return (
     <div className={styles.container}>
@@ -40,6 +43,7 @@ export default function LabelView({ label, updateLabel }: LabelViewProps) {
         onChange={(e) => setLink(e.target.value)}
         placeholder="Link"
       />
+      <button onClick={() => hide(label.ind)}>Hide</button>
     </div>
   );
 }

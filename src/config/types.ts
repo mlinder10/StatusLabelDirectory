@@ -43,3 +43,22 @@ export type MondayLabel = {
 };
 
 export type Themes = "light" | "dark" | "black";
+
+export const mockColumns = [
+  {
+    bid: "1",
+    cid: "1",
+    title: "To Do",
+    labels: [
+      {
+        bid: "1",
+        cid: "1",
+        index: "1",
+        text: "To Do",
+        color: "#ff0000",
+        notes: "",
+        link: "",
+      },
+    ],
+  },
+];

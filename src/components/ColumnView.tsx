@@ -11,6 +11,15 @@ type ColumnViewProps = {
 
 export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [hidden, setHidden] = useState<string[]>([]);
+
+  function hide(ind: string) {
+    setHidden([...hidden, ind]);
+  }
+
+  function reveal() {
+    setHidden([]);
+  }
 
   return (
     <div className={styles.column}>
@@ -19,6 +28,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
         <p className={styles.title}>{column.title}</p>
       </button>
       {isOpen && <Labels />}
+      <button onClick={reveal}>Show Hidden Labels</button>
     </div>
   );
 
@@ -26,7 +36,13 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
     return (
       <div className={styles.labels}>
         {column.labels.map((label) => (
-          <LabelView key={label.ind} label={label} updateLabel={updateLabel} />
+          <LabelView
+            key={label.ind}
+            label={label}
+            updateLabel={updateLabel}
+            hidden={hidden}
+            hide={hide}
+          />
         ))}
       </div>
     );

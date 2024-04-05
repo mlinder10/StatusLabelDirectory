@@ -24,7 +24,9 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
   return (
     <div className={styles.column}>
       <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
-        <VscChevronRight className={`${styles.arrow} ${isOpen && styles.open}`} />
+        <VscChevronRight
+          className={`${styles.arrow} ${isOpen && styles.open}`}
+        />
         <p className={styles.title}>{column.title}</p>
       </button>
       {isOpen && <Labels />}
@@ -34,7 +36,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
   function Labels() {
     return (
       <div className={styles.labels}>
-        <div>
+        <div className={styles.header}>
           <p>Title</p>
           <p>Notes</p>
           <p>Link</p>
@@ -51,7 +53,11 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
             hide={hide}
           />
         ))}
-        <button onClick={reveal} className={styles["show-btn"]}>Show Hidden Labels</button>
+        {hidden.length > 0 && (
+          <button onClick={reveal} className={styles["show-btn"]}>
+            Show Hidden Labels
+          </button>
+        )}
       </div>
     );
   }

@@ -8,6 +8,10 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+:root {
+  --accent: #55f;
+}
+
 .light {
   --txt: #000;
   --bg: #fff;

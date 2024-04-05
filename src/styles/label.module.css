@@ -3,10 +3,10 @@
 }
 
 .title {
-    width: 10vw;
+  width: 10vw;
 }
 
 .color {
-  width: 10vw;
   height: 1.5em;
+  aspect-ratio: 1;
 }

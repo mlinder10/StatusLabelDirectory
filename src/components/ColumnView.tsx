@@ -34,6 +34,14 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
   function Labels() {
     return (
       <div className={styles.labels}>
+        <div>
+          <p>Title</p>
+          <p>Notes</p>
+          <p>Link</p>
+          <p>Creator</p>
+          <p>LUD</p>
+          <p>Hide</p>
+        </div>
         {column.labels.map((label) => (
           <LabelView
             key={label.ind}
@@ -43,7 +51,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
             hide={hide}
           />
         ))}
-        <button onClick={reveal}>Show Hidden Labels</button>
+        <button onClick={reveal} className={styles["show-btn"]}>Show Hidden Labels</button>
       </div>
     );
   }

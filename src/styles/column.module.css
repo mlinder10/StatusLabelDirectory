@@ -35,3 +35,13 @@
   padding-left: 4em;
   padding-top: 1em;
 }
+
+.show-btn {
+  display: flex;
+  font-size: 0.8rem;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--accent);
+}

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Label } from "../config/types";
 import { postLabel } from "../config/helpers";
-import styles from "../styles/label.module.css"
+import styles from "../styles/label.module.css";
+import { VscEye } from "react-icons/vsc";
 
 type LabelViewProps = {
   label: Label;
@@ -10,9 +11,15 @@ type LabelViewProps = {
   hide: (ind: string) => void;
 };
 
-export default function LabelView({ label, updateLabel, hidden, hide }: LabelViewProps) {
+export default function LabelView({
+  label,
+  updateLabel,
+  hidden,
+  hide,
+}: LabelViewProps) {
   const [notes, setNotes] = useState(label.notes);
   const [link, setLink] = useState(label.link);
+  const [creator, setCreator] = useState("");
 
   useEffect(() => {
     function handleChange() {
@@ -26,11 +33,11 @@ export default function LabelView({ label, updateLabel, hidden, hide }: LabelVie
   }, [notes, link]);
 
   if (hidden.includes(label.ind)) return null;
-  
+
   return (
     <div className={styles.container}>
-      <p className={styles.title}>{label.txt}</p>
       <div className={styles.color} style={{ backgroundColor: label.color }} />
+      <p className={styles.title}>{label.txt}</p>
       <input
         type="text"
         value={notes}
@@ -43,7 +50,16 @@ export default function LabelView({ label, updateLabel, hidden, hide }: LabelVie
         onChange={(e) => setLink(e.target.value)}
         placeholder="Link"
       />
-      <button onClick={() => hide(label.ind)}>Hide</button>
+      <input
+        type="text"
+        value={creator}
+        onChange={(e) => setCreator(e.target.value)}
+        placeholder="Creator"
+      />
+      <p>Placeholder Date</p>
+      <button onClick={() => hide(label.ind)}>
+        <VscEye />
+      </button>
     </div>
   );
 }

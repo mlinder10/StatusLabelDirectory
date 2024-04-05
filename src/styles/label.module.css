@@ -19,10 +19,13 @@
 
 .hide-btn {
   display: flex;
+  width: 100%;
+  justify-content: center;
   background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
   font-size: 1rem;
+  font-weight: bold;
   color: var(--txt);
 }

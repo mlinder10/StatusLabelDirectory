@@ -62,7 +62,7 @@ export default function LabelView({
         placeholder="Creator"
       />
       <p>Placeholder Date</p>
-      <button onClick={() => hide(label.ind)}>
+      <button onClick={() => hide(label.ind)} className={styles["hide-btn"]}>
         <VscEye />
       </button>
     </div>

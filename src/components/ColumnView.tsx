@@ -1,4 +1,4 @@
-import { VscArrowRight } from "react-icons/vsc";
+import { VscChevronRight } from "react-icons/vsc";
 import { Column } from "../config/types";
 import styles from "../styles/column.module.css";
 import LabelView from "./LabelView";
@@ -24,7 +24,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
   return (
     <div className={styles.column}>
       <button className={styles.button} onClick={() => setIsOpen(!isOpen)}>
-        <VscArrowRight className={`${styles.arrow} ${isOpen && styles.open}`} />
+        <VscChevronRight className={`${styles.arrow} ${isOpen && styles.open}`} />
         <p className={styles.title}>{column.title}</p>
       </button>
       {isOpen && <Labels />}

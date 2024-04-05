@@ -28,7 +28,6 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
         <p className={styles.title}>{column.title}</p>
       </button>
       {isOpen && <Labels />}
-      <button onClick={reveal}>Show Hidden Labels</button>
     </div>
   );
 
@@ -44,6 +43,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
             hide={hide}
           />
         ))}
+        <button onClick={reveal}>Show Hidden Labels</button>
       </div>
     );
   }

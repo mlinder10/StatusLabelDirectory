@@ -72,11 +72,9 @@ export function mergeWithDB(
     columns.push({ bid: col.bid, cid: col.cid, title: col.title, labels });
   }
 
-  console.log(`PRE SORT: ${JSON.stringify(columns)}`);
-  columns.sort((a, b) =>
-    a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1
-  );
-  console.log(`POST SORT: ${JSON.stringify(columns)}`);
+  for (const col of columns) {
+    col.labels.sort((a, b) => a.txt.toUpperCase() < b.txt.toUpperCase() ? -1 : 1);
+  }
 
   return columns;
 }

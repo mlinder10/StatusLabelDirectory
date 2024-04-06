@@ -19,7 +19,7 @@ export default function LabelView({
 }: LabelViewProps) {
   const [notes, setNotes] = useState(label.notes);
   const [link, setLink] = useState(label.link);
-  const [creator, setCreator] = useState("");
+  const [creator, setCreator] = useState(label.creator);
 
   useEffect(() => {
     function handleChange() {
@@ -61,7 +61,7 @@ export default function LabelView({
         onChange={(e) => setCreator(e.target.value)}
         placeholder="Creator"
       />
-      <p>Placeholder Date</p>
+      <p>{label.updated}</p>
       <button onClick={() => hide(label.ind)} className={styles["hide-btn"]}>
         <VscEye />
       </button>

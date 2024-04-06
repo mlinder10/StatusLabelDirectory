@@ -105,6 +105,7 @@ export async function postLabel(
   creator: string
 ) {
   if (notes === "" && link === "" && creator === "") return;
+  console.log("post called", label, notes, link, creator);
 
   const time = new Date().toLocaleString();
   if (label.notes === "" && label.link === "" && label.creator === "") {

@@ -105,7 +105,6 @@ export async function postLabel(
   creator: string
 ) {
   if (notes === "" && link === "" && creator === "") return;
-  console.log("post called", label, notes, link, creator);
 
   const time = new Date().toLocaleString();
   if (label.notes === "" && label.link === "" && label.creator === "") {
@@ -128,6 +127,6 @@ export async function postLabel(
 
   await client.execute({
     sql: "update labels set notes = ?, link = ?, creator = ?, updated = ? where bid = ? and cid = ? and ind = ?",
-    args: [notes, link, label.bid, label.cid, label.ind, creator, time],
+    args: [notes, link, creator, time, label.bid, label.cid, label.ind],
   });
 }

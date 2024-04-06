@@ -17,6 +17,23 @@
   aspect-ratio: 1;
 }
 
+.hover-input {
+  background-color: transparent;
+  padding: 0.2em 0.1em;
+  padding: 0;
+  font-size: 1rem;
+  color: var(--txt);
+  outline: none;
+  border: thin solid transparent;
+  border-radius: 5px;
+  transition: 0.3s ease-in-out;
+}
+.hover-input:hover,
+.hover-input:focus {
+  padding: 0.5em 0.25em;
+  border-color: var(--txt);
+}
+
 .open-btn,
 .hide-btn {
   display: flex;

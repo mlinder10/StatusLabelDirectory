@@ -73,7 +73,7 @@ export default function LabelView({
         onChange={(e) => setCreator(e.target.value)}
         placeholder="Creator"
       />
-      <p>{label.updated}</p>
+      <p className={styles.date}>{label.updated}</p>
       <button onClick={() => hide(label.ind)} className={styles["hide-btn"]}>
         <VscEye />
       </button>

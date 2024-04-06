@@ -66,12 +66,14 @@ export default function LabelView({
         value={link}
         onChange={(e) => setLink(e.target.value)}
         placeholder="Link"
+        className={styles["hover-input"]}
       />
       <input
         type="text"
         value={creator}
         onChange={(e) => setCreator(e.target.value)}
         placeholder="Creator"
+        className={styles["hover-input"]}
       />
       <p className={styles.date}>{label.updated}</p>
       <button onClick={() => hide(label.ind)} className={styles["hide-btn"]}>

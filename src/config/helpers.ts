@@ -104,10 +104,10 @@ export async function postLabel(
   link: string,
   creator: string
 ) {
-  if (notes === "" && link === "") return;
+  if (notes === "" && link === "" && creator === "") return;
 
   const time = new Date().toLocaleString();
-  if (label.notes === "" && label.link === "") {
+  if (label.notes === "" && label.link === "" && label.creator === "") {
     await client.execute({
       sql: "insert into labels (bid, cid, ind, txt, color, notes, link, creator, updated) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       args: [

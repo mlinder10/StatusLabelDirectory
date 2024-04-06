@@ -58,7 +58,7 @@ export default function LabelView({
         />
         <p className={styles.title}>{label.txt}</p>
       </div>
-      <button onClick={handleOpenNotes}>
+      <button onClick={handleOpenNotes} className={styles["open-btn"]}>
         <VscFile />
       </button>
       <input

@@ -17,6 +17,7 @@
   aspect-ratio: 1;
 }
 
+.open-btn,
 .hide-btn {
   display: flex;
   background-color: transparent;

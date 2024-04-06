@@ -5,11 +5,11 @@ import useMonday from "./hooks/useMonday";
 import styles from "./styles/app.module.css";
 
 export default function App() {
-  const { theme, columns, updateLinkAndCreator } = useMonday();
+  const { theme, columns, updateLinkAndCreator, updateNotes } = useMonday();
 
   return (
     <div className={`${styles.main} ${theme}`}>
-      <NotesProvider>
+      <NotesProvider updateNotes={updateNotes}>
         {columns.map((col) => (
           <ColumnView
             key={col.cid}

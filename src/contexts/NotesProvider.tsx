@@ -7,9 +7,10 @@ export const NotesContext =
 
 type NotesProviderProps = {
   children: ReactNode;
+  updateNotes: (cid: string, ind: string, notes: string) => void;
 };
 
-export default function NotesProvider({ children }: NotesProviderProps) {
+export default function NotesProvider({ children, updateNotes }: NotesProviderProps) {
   const [bid, setBid] = useState("");
   const [cid, setCid] = useState("");
   const [ind, setInd] = useState("");
@@ -38,6 +39,7 @@ export default function NotesProvider({ children }: NotesProviderProps) {
         setNotes,
         setEditing,
         postNotesChange,
+        updateNotes,
       }}
     >
       {children}

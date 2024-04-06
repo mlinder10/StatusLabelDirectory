@@ -8,14 +8,22 @@ import styles from "../styles/editor.module.css";
 import { NotesContext } from "../contexts/NotesProvider";
 
 function MenuBar() {
-  const { setNotes } = useContext(NotesContext);
+  const { cid, ind, setNotes, postNotesChange, updateNotes } =
+    useContext(NotesContext);
   const { editor } = useCurrentEditor();
 
   useEffect(() => {
-    const html = editor?.getHTML();
-    if (html) {
-      setNotes(html);
+    if (!editor) return;
+    const html = editor.getHTML();
+    setNotes(html);
+
+    function handleChange() {
+      postNotesChange();
+      updateNotes(cid, ind, html);
     }
+
+    const timeoutId = setTimeout(handleChange, 1000);
+    return () => clearTimeout(timeoutId);
   }, [editor?.getHTML()]);
 
   if (!editor) {

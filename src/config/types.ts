@@ -58,6 +58,7 @@ export type NotesContextType = {
   setNotes: (notes: string) => void;
   setEditing: (editing: boolean) => void;
   postNotesChange: () => Promise<void>;
+  updateNotes: (cid: string, ind: string, notes: string) => void;
 };
 
 export const mockColumns = [

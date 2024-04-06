@@ -37,7 +37,12 @@ export default function useMonday() {
     fetchData();
   }, [bid]);
 
-  function updateLinkAndCreator(cid: string, ind: string, link: string, creator: string) {
+  function updateLinkAndCreator(
+    cid: string,
+    ind: string,
+    link: string,
+    creator: string
+  ) {
     let copy = [...columns];
     for (const col of copy) {
       if (col.cid === cid) {
@@ -53,5 +58,20 @@ export default function useMonday() {
     setColumns(copy);
   }
 
-  return { theme, columns, updateLinkAndCreator };
+  function updateNotes(cid: string, ind: string, notes: string) {
+    let copy = [...columns];
+    for (const col of copy) {
+      if (col.cid === cid) {
+        for (const label of col.labels) {
+          if (label.ind === ind) {
+            label.notes = notes;
+            break;
+          }
+        }
+      }
+    }
+    setColumns(copy);
+  }
+
+  return { theme, columns, updateLinkAndCreator, updateNotes };
 }

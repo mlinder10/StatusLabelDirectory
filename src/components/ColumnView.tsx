@@ -6,7 +6,7 @@ import { useState } from "react";
 
 type ColumnViewProps = {
   column: Column;
-  updateLabel: (cid: string, ind: string, notes: string, link: string) => void;
+  updateLabel: (cid: string, ind: string, notes: string, link: string, creator: string) => void;
 };
 
 export default function ColumnView({ column, updateLabel }: ColumnViewProps) {

@@ -6,7 +6,13 @@ import { VscEye } from "react-icons/vsc";
 
 type LabelViewProps = {
   label: Label;
-  updateLabel: (cid: string, ind: string, notes: string, link: string) => void;
+  updateLabel: (
+    cid: string,
+    ind: string,
+    notes: string,
+    link: string,
+    creator: string
+  ) => void;
   hidden: string[];
   hide: (ind: string) => void;
 };
@@ -23,14 +29,19 @@ export default function LabelView({
 
   useEffect(() => {
     function handleChange() {
-      if (notes === label.notes && link === label.link) return;
+      if (
+        notes === label.notes &&
+        link === label.link &&
+        creator === label.creator
+      )
+        return;
       postLabel(label, notes, link, creator);
-      updateLabel(label.cid, label.ind, notes, link);
+      updateLabel(label.cid, label.ind, notes, link, creator);
     }
 
     const timeoutId = setTimeout(handleChange, 1000);
     return () => clearTimeout(timeoutId);
-  }, [notes, link]);
+  }, [notes, link, creator]);
 
   if (hidden.includes(label.ind)) return null;
 

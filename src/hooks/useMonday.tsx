@@ -37,7 +37,7 @@ export default function useMonday() {
     fetchData();
   }, [bid]);
 
-  function updateLabel(cid: string, ind: string, notes: string, link: string) {
+  function updateLabel(cid: string, ind: string, notes: string, link: string, creator: string) {
     let copy = [...columns];
     for (const col of copy) {
       if (col.cid === cid) {
@@ -45,6 +45,7 @@ export default function useMonday() {
           if (label.ind === ind) {
             label.notes = notes;
             label.link = link;
+            label.creator = creator;
             break;
           }
         }

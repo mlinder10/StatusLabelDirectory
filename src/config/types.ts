@@ -25,6 +25,8 @@ export type Label = {
   color: string;
   notes: string;
   link: string;
+  creator: string;
+  updated: string;
 };
 
 export type MondayColumn = {
@@ -58,6 +60,8 @@ export const mockColumns = [
         color: "#ff0000",
         notes: "",
         link: "",
+        creator: "",
+        updated: "",
       },
     ],
   },

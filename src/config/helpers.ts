@@ -54,6 +54,8 @@ export function mergeWithDB(
             color: label.color,
             notes: row.notes as string,
             link: row.link as string,
+            creator: row.creator as string,
+            updated: row.updated as string,
           });
         }
       }
@@ -66,6 +68,8 @@ export function mergeWithDB(
           color: label.color,
           notes: "",
           link: "",
+          creator: "",
+          updated: "",
         });
       }
     }
@@ -73,7 +77,9 @@ export function mergeWithDB(
   }
 
   for (const col of columns) {
-    col.labels.sort((a, b) => a.txt.toUpperCase() < b.txt.toUpperCase() ? -1 : 1);
+    col.labels.sort((a, b) =>
+      a.txt.toUpperCase() < b.txt.toUpperCase() ? -1 : 1
+    );
   }
 
   return columns;
@@ -92,12 +98,18 @@ query {
 }
 `;
 
-export async function postLabel(label: Label, notes: string, link: string) {
+export async function postLabel(
+  label: Label,
+  notes: string,
+  link: string,
+  creator: string
+) {
   if (notes === "" && link === "") return;
 
+  const time = new Date().toLocaleString();
   if (label.notes === "" && label.link === "") {
     await client.execute({
-      sql: "insert into labels (bid, cid, ind, txt, color, notes, link) values (?, ?, ?, ?, ?, ?, ?)",
+      sql: "insert into labels (bid, cid, ind, txt, color, notes, link, creator, updated) values (?, ?, ?, ?, ?, ?, ?, ?, ?)",
       args: [
         label.bid,
         label.cid,
@@ -106,13 +118,15 @@ export async function postLabel(label: Label, notes: string, link: string) {
         label.color,
         notes,
         link,
+        creator,
+        time,
       ],
     });
     return;
   }
 
   await client.execute({
-    sql: "update labels set notes = ?, link = ? where bid = ? and cid = ? and ind = ?",
-    args: [notes, link, label.bid, label.cid, label.ind],
+    sql: "update labels set notes = ?, link = ?, creator = ?, updated = ? where bid = ? and cid = ? and ind = ?",
+    args: [notes, link, label.bid, label.cid, label.ind, creator, time],
   });
 }

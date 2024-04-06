@@ -24,7 +24,7 @@ export default function LabelView({
   useEffect(() => {
     function handleChange() {
       if (notes === label.notes && link === label.link) return;
-      postLabel(label, notes, link);
+      postLabel(label, notes, link, creator);
       updateLabel(label.cid, label.ind, notes, link);
     }
 

@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 # dev
-dev.ts
+dev.js

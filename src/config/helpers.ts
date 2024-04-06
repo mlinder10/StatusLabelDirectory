@@ -72,6 +72,10 @@ export function mergeWithDB(
     columns.push({ bid: col.bid, cid: col.cid, title: col.title, labels });
   }
 
+  columns.sort((a, b) =>
+    a.title.toUpperCase() < b.title.toUpperCase() ? -1 : 1
+  );
+
   return columns;
 }
 

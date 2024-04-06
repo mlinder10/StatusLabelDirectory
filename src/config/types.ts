@@ -46,6 +46,19 @@ export type MondayLabel = {
 
 export type Themes = "light" | "dark" | "black";
 
+export type NotesContextType = {
+  bid: string;
+  cid: string;
+  ind: string;
+  notes: string;
+  editing: boolean;
+  setBid: (bid: string) => void;
+  setCid: (cid: string) => void;
+  setInd: (ind: string) => void;
+  setNotes: (notes: string) => void;
+  setEditing: (editing: boolean) => void;
+};
+
 export const mockColumns = [
   {
     bid: "1",

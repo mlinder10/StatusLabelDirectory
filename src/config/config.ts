@@ -22,4 +22,5 @@ export const defaultNotesContext = {
   setInd: () => {},
   setNotes: () => {},
   setEditing: () => {},
+  postNotesChange: async () => {},
 };

@@ -6,10 +6,18 @@ import { useState } from "react";
 
 type ColumnViewProps = {
   column: Column;
-  updateLabel: (cid: string, ind: string, notes: string, link: string, creator: string) => void;
+  updateLinkAndCreator: (
+    cid: string,
+    ind: string,
+    link: string,
+    creator: string
+  ) => void;
 };
 
-export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
+export default function ColumnView({
+  column,
+  updateLinkAndCreator,
+}: ColumnViewProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [hidden, setHidden] = useState<string[]>([]);
 
@@ -48,7 +56,7 @@ export default function ColumnView({ column, updateLabel }: ColumnViewProps) {
           <LabelView
             key={label.ind}
             label={label}
-            updateLabel={updateLabel}
+            updateLinkAndCreator={updateLinkAndCreator}
             hidden={hidden}
             hide={hide}
           />

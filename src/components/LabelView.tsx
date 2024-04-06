@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Label } from "../config/types";
 import { postLabel } from "../config/helpers";
 import styles from "../styles/label.module.css";
-import { VscEye } from "react-icons/vsc";
+import { VscEye, VscFile } from "react-icons/vsc";
+import { NotesContext } from "../contexts/NotesProvider";
 
 type LabelViewProps = {
   label: Label;
-  updateLabel: (
+  updateLinkAndCreator: (
     cid: string,
     ind: string,
-    notes: string,
     link: string,
     creator: string
   ) => void;
@@ -19,31 +19,35 @@ type LabelViewProps = {
 
 export default function LabelView({
   label,
-  updateLabel,
+  updateLinkAndCreator,
   hidden,
   hide,
 }: LabelViewProps) {
-  const [notes, setNotes] = useState(label.notes);
+  const { notes, setNotes, setEditing, setBid, setCid, setInd } =
+    useContext(NotesContext);
   const [link, setLink] = useState(label.link);
   const [creator, setCreator] = useState(label.creator);
 
   useEffect(() => {
     function handleChange() {
-      if (
-        notes === label.notes &&
-        link === label.link &&
-        creator === label.creator
-      )
-        return;
+      if (link === label.link && creator === label.creator) return;
       postLabel(label, notes, link, creator);
-      updateLabel(label.cid, label.ind, notes, link, creator);
+      updateLinkAndCreator(label.cid, label.ind, link, creator);
     }
 
     const timeoutId = setTimeout(handleChange, 1000);
     return () => clearTimeout(timeoutId);
-  }, [notes, link, creator]);
+  }, [link, creator]);
 
   if (hidden.includes(label.ind)) return null;
+
+  function handleOpenNotes() {
+    setEditing(true);
+    setBid(label.bid);
+    setCid(label.cid);
+    setInd(label.ind);
+    setNotes(label.notes);
+  }
 
   return (
     <div className={styles.container}>
@@ -54,12 +58,9 @@ export default function LabelView({
         />
         <p className={styles.title}>{label.txt}</p>
       </div>
-      <input
-        type="text"
-        value={notes}
-        onChange={(e) => setNotes(e.target.value)}
-        placeholder="Notes"
-      />
+      <button onClick={handleOpenNotes}>
+        <VscFile />
+      </button>
       <input
         type="text"
         value={link}

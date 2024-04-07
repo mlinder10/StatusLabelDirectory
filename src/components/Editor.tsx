@@ -6,6 +6,20 @@ import StarterKit from "@tiptap/starter-kit";
 import { useContext, useEffect } from "react";
 import styles from "../styles/editor.module.css";
 import { NotesContext } from "../contexts/NotesProvider";
+import {
+  VscBold,
+  VscCode,
+  VscHorizontalRule,
+  VscItalic,
+} from "react-icons/vsc";
+import {
+  FaListOl,
+  FaListUl,
+  FaParagraph,
+  FaRedo,
+  FaStrikethrough,
+  FaUndo,
+} from "react-icons/fa";
 
 function MenuBar() {
   const { cid, ind, setNotes, postNotesChange, updateNotes } =
@@ -31,40 +45,40 @@ function MenuBar() {
   }
 
   return (
-    <div className={styles.tiptap}>
+    <div className={styles.menu}>
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
         className={editor.isActive("bold") ? "is-active" : ""}
       >
-        bold
+        <VscBold />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={editor.isActive("italic") ? "is-active" : ""}
       >
-        italic
+        <VscItalic />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         disabled={!editor.can().chain().focus().toggleStrike().run()}
         className={editor.isActive("strike") ? "is-active" : ""}
       >
-        strike
+        <FaStrikethrough />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleCode().run()}
         disabled={!editor.can().chain().focus().toggleCode().run()}
         className={editor.isActive("code") ? "is-active" : ""}
       >
-        code
+        <VscCode />
       </button>
       <button
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive("paragraph") ? "is-active" : ""}
       >
-        paragraph
+        <FaParagraph />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -106,34 +120,28 @@ function MenuBar() {
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive("bulletList") ? "is-active" : ""}
       >
-        bullet list
+        <FaListUl />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive("orderedList") ? "is-active" : ""}
       >
-        ordered list
-      </button>
-      <button
-        onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        className={editor.isActive("blockquote") ? "is-active" : ""}
-      >
-        blockquote
+        <FaListOl />
       </button>
       <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-        horizontal rule
+        <VscHorizontalRule />
       </button>
       <button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}
       >
-        undo
+        <FaUndo />
       </button>
       <button
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().chain().focus().redo().run()}
       >
-        redo
+        <FaRedo />
       </button>
     </div>
   );

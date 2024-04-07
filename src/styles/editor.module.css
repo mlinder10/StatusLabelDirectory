@@ -25,7 +25,7 @@
     border: thin solid var(--border);
     top: 110%;
     left: 50%;
-    width: 100px;
+    max-width: 100px;
     pointer-events: none;
     opacity: 0;
     translate: -50% -2em;

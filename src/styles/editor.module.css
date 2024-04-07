@@ -1,9 +1,14 @@
 .menu {
   display: flex;
   gap: 1em;
-  margin-bottom: 2em;
+  margin-block: 1em;
 
   button {
     font-size: 1rem;
+    border: none;
+    outline: none;
+    background-color: var(--bg-sec);
+    padding: 0.5em;
+    color: var(--txt);
   }
 }

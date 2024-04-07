@@ -7,16 +7,14 @@ import { useContext, useEffect } from "react";
 import styles from "../styles/editor.module.css";
 import { NotesContext } from "../contexts/NotesProvider";
 import {
-  VscBold,
-  VscCode,
-  VscHorizontalRule,
-  VscItalic,
-} from "react-icons/vsc";
-import {
+  FaBold,
+  FaCode,
+  FaItalic,
   FaListOl,
   FaListUl,
   FaParagraph,
   FaRedo,
+  FaRulerHorizontal,
   FaStrikethrough,
   FaUndo,
 } from "react-icons/fa";
@@ -51,14 +49,14 @@ function MenuBar() {
         disabled={!editor.can().chain().focus().toggleBold().run()}
         className={editor.isActive("bold") ? "is-active" : ""}
       >
-        <VscBold />
+        <FaBold />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={editor.isActive("italic") ? "is-active" : ""}
       >
-        <VscItalic />
+        <FaItalic />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -72,7 +70,7 @@ function MenuBar() {
         disabled={!editor.can().chain().focus().toggleCode().run()}
         className={editor.isActive("code") ? "is-active" : ""}
       >
-        <VscCode />
+        <FaCode />
       </button>
       <button
         onClick={() => editor.chain().focus().setParagraph().run()}
@@ -129,7 +127,7 @@ function MenuBar() {
         <FaListOl />
       </button>
       <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
-        <VscHorizontalRule />
+        <FaRulerHorizontal />
       </button>
       <button
         onClick={() => editor.chain().focus().undo().run()}

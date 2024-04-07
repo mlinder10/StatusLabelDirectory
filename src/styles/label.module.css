@@ -17,6 +17,7 @@
   translate: 0 -50%;
   height: 1.5em;
   aspect-ratio: 1;
+  border-radius: 1em;
 }
 
 .hover-input {

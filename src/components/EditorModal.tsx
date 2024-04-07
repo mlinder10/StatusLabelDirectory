@@ -11,7 +11,7 @@ export default function EditorModal() {
 
   return (
     <div className={styles.modal} onClick={() => setEditing(false)}>
-      <div className={styles.container}>
+      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
         <button onClick={() => setEditing(false)} className={styles.close}>
           <VscClose />
         </button>

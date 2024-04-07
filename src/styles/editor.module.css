@@ -29,4 +29,5 @@
   position: absolute;
   top: 0.5em;
   left: 0.5em;
+  color: var(--txt-sec)
 }

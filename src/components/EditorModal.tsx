@@ -10,7 +10,7 @@ export default function EditorModal() {
   if (!editing) return null;
 
   return (
-    <div className={styles.modal}>
+    <div className={styles.modal} onClick={() => setEditing(false)}>
       <div className={styles.container}>
         <button onClick={() => setEditing(false)} className={styles.close}>
           <VscClose />

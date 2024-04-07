@@ -167,7 +167,7 @@ export default function Editor() {
       slotBefore={<MenuBar />}
       extensions={extensions}
       content={notes}
-      editorProps={{ attributes: { className: styles.editor } }}
+      editorProps={{ attributes: { class: styles.editor } }}
     >
       <></>
     </EditorProvider>

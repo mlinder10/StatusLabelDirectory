@@ -49,7 +49,7 @@ export default function ColumnView({
           <p>Notes</p>
           <p>Link</p>
           <p>Creator</p>
-          <p>LUD</p>
+          <p>Last Updated</p>
           <p>Hide</p>
         </div>
         {column.labels.map((label) => (

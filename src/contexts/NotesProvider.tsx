@@ -19,9 +19,10 @@ export default function NotesProvider({ children, updateNotes }: NotesProviderPr
 
   async function postNotesChange() {
     if (!bid || !cid || !ind) return;
+    const time = new Date().toLocaleString();
     await client.execute({
-      sql: "update labels set notes = ? where bid = ? and cid = ? and ind = ?",
-      args: [notes, bid, cid, ind],
+      sql: "update labels set notes = ?, updated = ? where bid = ? and cid = ? and ind = ?",
+      args: [notes, time, bid, cid, ind],
     });
   }
 

@@ -4,11 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  background-color: #0009;
+  filter: blur(8px);
 }
 
 .container {
-  background-color: #000;
+  background-color: var(--bg);
   padding: 2em;
   width: 60%;
   height: 90%;

@@ -125,7 +125,7 @@ export default function Editor() {
 
   return (
     <EditorProvider
-      slotBefore={<MenuBar />}
+      slotBefore={<MenuBar setEmpty={setEmpty} />}
       extensions={extensions}
       content={notes}
       editorProps={{

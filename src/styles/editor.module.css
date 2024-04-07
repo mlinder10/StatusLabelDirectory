@@ -13,3 +13,8 @@
     cursor: pointer;
   }
 }
+
+.editor {
+  padding: 0.5em;
+  color: var(--txt);
+}

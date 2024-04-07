@@ -147,15 +147,14 @@ function MenuBar() {
 
 const extensions = [
   Color.configure({ types: [TextStyle.name, ListItem.name] }),
-  //   TextStyle.configure({ types: [ListItem.name] }),
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      keepAttributes: false,
     },
     orderedList: {
       keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      keepAttributes: false,
     },
   }),
 ];
@@ -168,6 +167,7 @@ export default function Editor() {
       slotBefore={<MenuBar />}
       extensions={extensions}
       content={notes}
+      editorProps={{ attributes: { className: styles.editor } }}
     >
       <></>
     </EditorProvider>

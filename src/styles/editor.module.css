@@ -15,7 +15,7 @@
   }
 
   button::after {
-    content: "Button description";
+    content: attr(aria-description);
     position: absolute;
     background-color: var(--bg-sec);
     color: var(--txt);

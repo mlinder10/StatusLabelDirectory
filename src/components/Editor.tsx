@@ -3,7 +3,13 @@ import ListItem from "@tiptap/extension-list-item";
 import TextStyle from "@tiptap/extension-text-style";
 import { EditorProvider, useCurrentEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { useContext, useEffect } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import styles from "../styles/editor.module.css";
 import { NotesContext } from "../contexts/NotesProvider";
 import {
@@ -17,7 +23,11 @@ import {
   FaUndo,
 } from "react-icons/fa";
 
-function MenuBar() {
+type MenuBarProps = {
+  setEmpty: Dispatch<SetStateAction<boolean>>;
+};
+
+function MenuBar({ setEmpty }: MenuBarProps) {
   const { cid, ind, setNotes, postNotesChange, updateNotes } =
     useContext(NotesContext);
   const { editor } = useCurrentEditor();
@@ -26,6 +36,7 @@ function MenuBar() {
     if (!editor) return;
     const html = editor.getHTML();
     setNotes(html);
+    setEmpty(editor.getText() === "");
 
     function handleChange() {
       postNotesChange();
@@ -110,9 +121,7 @@ const extensions = [
 
 export default function Editor() {
   const { notes } = useContext(NotesContext);
-
-  const isEmpty =
-    notes === "" || notes == '<p><br class="ProseMirror-trailingBreak"></p>';
+  const [empty, setEmpty] = useState(notes === "");
 
   return (
     <EditorProvider
@@ -121,7 +130,7 @@ export default function Editor() {
       content={notes}
       editorProps={{
         attributes: {
-          class: `${styles.editor} ${isEmpty ? styles.empty : ""}`,
+          class: `${styles.editor} ${empty ? styles.empty : ""}`,
         },
       }}
     >

@@ -8,11 +8,9 @@ import styles from "../styles/editor.module.css";
 import { NotesContext } from "../contexts/NotesProvider";
 import {
   FaBold,
-  FaCode,
   FaItalic,
   FaListOl,
   FaListUl,
-  FaParagraph,
   FaRedo,
   FaRulerHorizontal,
   FaStrikethrough,
@@ -66,19 +64,6 @@ function MenuBar() {
         <FaStrikethrough />
       </button>
       <button
-        onClick={() => editor.chain().focus().toggleCode().run()}
-        disabled={!editor.can().chain().focus().toggleCode().run()}
-        className={editor.isActive("code") ? "is-active" : ""}
-      >
-        <FaCode />
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setParagraph().run()}
-        className={editor.isActive("paragraph") ? "is-active" : ""}
-      >
-        <FaParagraph />
-      </button>
-      <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive("bulletList") ? "is-active" : ""}
       >
@@ -126,6 +111,9 @@ const extensions = [
 export default function Editor() {
   const { notes } = useContext(NotesContext);
 
+  const isEmpty =
+    notes === "" || notes == '<p><br class="ProseMirror-trailingBreak"></p>';
+
   return (
     <EditorProvider
       slotBefore={<MenuBar />}
@@ -133,7 +121,7 @@ export default function Editor() {
       content={notes}
       editorProps={{
         attributes: {
-          class: `${styles.editor} ${notes === "" ? styles.empty : ""}`,
+          class: `${styles.editor} ${isEmpty ? styles.empty : ""}`,
         },
       }}
     >

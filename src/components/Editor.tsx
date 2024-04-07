@@ -57,6 +57,7 @@ function MenuBar({ setEmpty }: MenuBarProps) {
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
         className={editor.isActive("bold") ? "is-active" : ""}
+        aria-description="Bold"
       >
         <FaBold />
       </button>
@@ -64,6 +65,7 @@ function MenuBar({ setEmpty }: MenuBarProps) {
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={editor.isActive("italic") ? "is-active" : ""}
+        aria-description="Italic"
       >
         <FaItalic />
       </button>
@@ -71,33 +73,41 @@ function MenuBar({ setEmpty }: MenuBarProps) {
         onClick={() => editor.chain().focus().toggleStrike().run()}
         disabled={!editor.can().chain().focus().toggleStrike().run()}
         className={editor.isActive("strike") ? "is-active" : ""}
+        aria-description="Strikethrough"
       >
         <FaStrikethrough />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive("bulletList") ? "is-active" : ""}
+        aria-description="Bullet list"
       >
         <FaListUl />
       </button>
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={editor.isActive("orderedList") ? "is-active" : ""}
+        aria-description="Numbered list"
       >
         <FaListOl />
       </button>
-      <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
+      <button
+        onClick={() => editor.chain().focus().setHorizontalRule().run()}
+        aria-description="Horizontal rule"
+      >
         <FaRulerHorizontal />
       </button>
       <button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().chain().focus().undo().run()}
+        aria-description="Undo"
       >
         <FaUndo />
       </button>
       <button
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().chain().focus().redo().run()}
+        aria-description="Redo"
       >
         <FaRedo />
       </button>

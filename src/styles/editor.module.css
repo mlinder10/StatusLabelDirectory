@@ -15,6 +15,18 @@
 }
 
 .editor {
+  position: relative;
   padding: 0.5em;
   color: var(--txt);
+
+  ol,
+  ul {
+    padding-left: 2em;
+  }
+}
+.editor.empty:not(:focus)::after {
+  content: "Start typing...";
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
 }

@@ -78,7 +78,7 @@ function MenuBar() {
       >
         <FaParagraph />
       </button>
-      <button
+      {/* <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
         className={editor.isActive("heading", { level: 1 }) ? "is-active" : ""}
       >
@@ -113,7 +113,7 @@ function MenuBar() {
         className={editor.isActive("heading", { level: 6 }) ? "is-active" : ""}
       >
         h6
-      </button>
+      </button> */}
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={editor.isActive("bulletList") ? "is-active" : ""}

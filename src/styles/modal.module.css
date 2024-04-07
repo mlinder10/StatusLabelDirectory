@@ -12,4 +12,7 @@
   padding: 2em;
   width: 60%;
   height: 90%;
+  border-top-left-radius: 1em;
+  border-top-right-radius: 1em;
+  border: thin solid var(--border)
 }

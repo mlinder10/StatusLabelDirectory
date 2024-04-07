@@ -1,6 +1,6 @@
 .menu {
   display: flex;
-  gap: 1em;
+  justify-content: space-evenly;
   margin-block: 1em;
 
   button {

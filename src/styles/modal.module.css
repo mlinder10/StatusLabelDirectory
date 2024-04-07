@@ -1,0 +1,13 @@
+.modal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background-color: #0009;
+}
+
+.container {
+  width: 60%;
+  height: 90%;
+}

@@ -60,12 +60,6 @@ function MenuBar() {
       >
         code
       </button>
-      <button onClick={() => editor.chain().focus().unsetAllMarks().run()}>
-        clear marks
-      </button>
-      <button onClick={() => editor.chain().focus().clearNodes().run()}>
-        clear nodes
-      </button>
       <button
         onClick={() => editor.chain().focus().setParagraph().run()}
         className={editor.isActive("paragraph") ? "is-active" : ""}
@@ -121,12 +115,6 @@ function MenuBar() {
         ordered list
       </button>
       <button
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={editor.isActive("codeBlock") ? "is-active" : ""}
-      >
-        code block
-      </button>
-      <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={editor.isActive("blockquote") ? "is-active" : ""}
       >
@@ -134,9 +122,6 @@ function MenuBar() {
       </button>
       <button onClick={() => editor.chain().focus().setHorizontalRule().run()}>
         horizontal rule
-      </button>
-      <button onClick={() => editor.chain().focus().setHardBreak().run()}>
-        hard break
       </button>
       <button
         onClick={() => editor.chain().focus().undo().run()}
@@ -149,14 +134,6 @@ function MenuBar() {
         disabled={!editor.can().chain().focus().redo().run()}
       >
         redo
-      </button>
-      <button
-        onClick={() => editor.chain().focus().setColor("#958DF1").run()}
-        className={
-          editor.isActive("textStyle", { color: "#958DF1" }) ? "is-active" : ""
-        }
-      >
-        purple
       </button>
     </div>
   );

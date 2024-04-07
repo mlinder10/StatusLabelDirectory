@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { NotesContext } from "../contexts/NotesProvider";
 import Editor from "./Editor";
+import styles from "../styles/modal.module.css"
 
 export default function EditorModal() {
   const { editing, setEditing, notes } = useContext(NotesContext);
@@ -13,9 +14,11 @@ export default function EditorModal() {
   }
 
   return (
-    <div style={{ position: "absolute", inset: 0, backgroundColor: "#000" }}>
-      <button onClick={handleClose}>Close</button>
-      <Editor />
+    <div className={styles.modal}>
+      <div className={styles.container}>
+        <button onClick={handleClose}>Close</button>
+        <Editor />
+      </div>
     </div>
   );
 }

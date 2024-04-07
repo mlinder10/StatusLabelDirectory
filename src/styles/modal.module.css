@@ -8,6 +8,8 @@
 }
 
 .container {
+  background-color: #000;
+  padding: 2em;
   width: 60%;
   height: 90%;
 }

@@ -45,7 +45,7 @@ export default function ColumnView({
     return (
       <div className={styles.labels}>
         <div className={styles.header}>
-          <p>Title</p>
+          <p>Label</p>
           <p>Notes</p>
           <p>Link</p>
           <p>Creator</p>

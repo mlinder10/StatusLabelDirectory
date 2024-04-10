@@ -39,6 +39,7 @@
 
 .open-btn,
 .hide-btn {
+  margin-left: 2em;
   display: flex;
   background-color: transparent;
   border: none;

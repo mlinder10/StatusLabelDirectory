@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Label } from "../config/types";
+import { Hidden, Label } from "../config/types";
 import { postLabel } from "../config/helpers";
 import styles from "../styles/label.module.css";
 import { VscEye, VscFile } from "react-icons/vsc";
@@ -13,8 +13,8 @@ type LabelViewProps = {
     link: string,
     creator: string
   ) => void;
-  hidden: string[];
-  hide: (ind: string) => void;
+  hidden: Hidden[];
+  hide: (bid: string, cid: string, ind: string) => void;
 };
 
 export default function LabelView({
@@ -39,7 +39,10 @@ export default function LabelView({
     return () => clearTimeout(timeoutId);
   }, [link, creator]);
 
-  if (hidden.includes(label.ind)) return null;
+  const existing = hidden.find(
+    (h) => h.bid === label.bid && h.cid === label.cid && h.ind === label.ind
+  );
+  if (existing) return null;
 
   function handleOpenNotes() {
     setEditing(true);
@@ -76,7 +79,10 @@ export default function LabelView({
         className={styles["hover-input"]}
       />
       <p className={styles.date}>{label.updated}</p>
-      <button onClick={() => hide(label.ind)} className={styles["hide-btn"]}>
+      <button
+        onClick={() => hide(label.bid, label.cid, label.ind)}
+        className={styles["hide-btn"]}
+      >
         <VscEye />
       </button>
     </div>

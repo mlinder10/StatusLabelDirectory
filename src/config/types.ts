@@ -61,6 +61,12 @@ export type NotesContextType = {
   updateNotes: (cid: string, ind: string, notes: string) => void;
 };
 
+export type Hidden = {
+  bid: string;
+  cid: string;
+  ind: string;
+}
+
 export const mockColumns = [
   {
     bid: "1",

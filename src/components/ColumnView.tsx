@@ -3,6 +3,7 @@ import { Column } from "../config/types";
 import styles from "../styles/column.module.css";
 import LabelView from "./LabelView";
 import { useState } from "react";
+import useHide from "../hooks/useHide";
 
 type ColumnViewProps = {
   column: Column;
@@ -19,15 +20,7 @@ export default function ColumnView({
   updateLinkAndCreator,
 }: ColumnViewProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [hidden, setHidden] = useState<string[]>([]);
-
-  function hide(ind: string) {
-    setHidden([...hidden, ind]);
-  }
-
-  function reveal() {
-    setHidden([]);
-  }
+  const { hidden, hide, reveal } = useHide();
 
   return (
     <div className={styles.column}>

@@ -9,6 +9,8 @@ export default function useMonday() {
   const [columns, setColumns] = useState<Column[]>([]);
 
   useEffect(() => {
+    monday.execute("valueCreatedForUser");
+
     monday.listen("context", (res) => {
       const unchecked = res.data as any;
       setTheme(unchecked.theme);

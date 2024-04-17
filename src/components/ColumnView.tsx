@@ -1,4 +1,4 @@
-import { VscChevronRight } from "react-icons/vsc";
+import { VscChevronRight, VscInfo } from "react-icons/vsc";
 import { Column } from "../config/types";
 import styles from "../styles/column.module.css";
 import LabelView from "./LabelView";
@@ -45,12 +45,36 @@ export default function ColumnView({
     return (
       <div className={styles.labels}>
         <div className={styles.header}>
-          <p>Label</p>
-          <p>Notes</p>
-          <p>Link</p>
-          <p>Creator</p>
-          <p>Last Updated</p>
-          <p>Hide</p>
+          <div className={styles["header-title"]}>
+            <p>Label</p>
+            <VscInfo className={styles["info-icon"]} />
+            <span className={styles["info-text"]}>Some text</span>
+          </div>
+          <div className={styles["header-title"]}>
+            <p>Notes</p>
+            <VscInfo className={styles["info-icon"]} />
+            <span className={styles["info-text"]}>Some text</span>
+          </div>
+          <div className={styles["header-title"]}>
+            <p>Link</p>
+            <VscInfo className={styles["info-icon"]} />
+            <span className={styles["info-text"]}>Some text</span>
+          </div>
+          <div className={styles["header-title"]}>
+            <p>Creator</p>
+            <VscInfo className={styles["info-icon"]} />
+            <span className={styles["info-text"]}>Some text</span>
+          </div>
+          <div className={styles["header-title"]}>
+            <p>Last Updated</p>
+            <VscInfo className={styles["info-icon"]} />
+            <span className={styles["info-text"]}>Some text</span>
+          </div>
+          <div className={styles["header-title"]}>
+            <p>Hide</p>
+            <VscInfo className={styles["info-icon"]} />
+            <span className={styles["info-text"]}>Some text</span>
+          </div>
         </div>
         {column.labels.map((label) => (
           <LabelView

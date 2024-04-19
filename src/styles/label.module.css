@@ -71,7 +71,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    color: var(--accent);
+    color: var(--acc);
     text-decoration: underline;
   }
 }

@@ -57,6 +57,10 @@
   display: flex;
   gap: 1em;
   align-items: center;
+  padding: 0.2em 0.1em;
+  border-radius: 5px;
+  border: thin solid transparent;
+  transition: 0.3s ease-in-out;
 
   input {
     background-color: transparent;
@@ -64,9 +68,6 @@
     outline: none;
     color: var(--txt);
     font-size: 0.8rem;
-    padding: 0.2em 0.1em;
-    border: thin solid transparent;
-    transition: 0.3s ease-in-out;
   }
 
   button {
@@ -79,8 +80,8 @@
   }
 }
 
-.link-container > input:hover,
-.link-container > input:focus {
+.link-container:has(input:hover),
+.link-container:has(input:focus) {
   padding: 0.5em 0.25em;
   border-color: var(--txt);
 }

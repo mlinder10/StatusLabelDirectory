@@ -34,8 +34,9 @@ function MenuBar({ setEmpty }: MenuBarProps) {
 
   useEffect(() => {
     if (!editor) return;
+    const text = editor.getText();
     const html = editor.getHTML();
-    console.log(html)
+    console.log(html, text)
     setNotes(html);
     setEmpty(editor.getText() === "");
 

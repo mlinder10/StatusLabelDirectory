@@ -18,7 +18,6 @@ export default function LinkInput({ link, setLink }: LinkInputProps) {
         value={link}
         onChange={(e) => setLink(e.target.value)}
         placeholder="Link"
-        className=""
       />
       <button onClick={handleClick}>Go</button>
     </div>

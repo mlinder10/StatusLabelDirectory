@@ -10,7 +10,10 @@ type NotesProviderProps = {
   updateNotes: (cid: string, ind: string, notes: string) => void;
 };
 
-export default function NotesProvider({ children, updateNotes }: NotesProviderProps) {
+export default function NotesProvider({
+  children,
+  updateNotes,
+}: NotesProviderProps) {
   const [bid, setBid] = useState("");
   const [cid, setCid] = useState("");
   const [ind, setInd] = useState("");
@@ -20,10 +23,14 @@ export default function NotesProvider({ children, updateNotes }: NotesProviderPr
   async function postNotesChange() {
     if (!bid || !cid || !ind) return;
     const time = new Date().toLocaleString();
-    await client.execute({
-      sql: "update labels set notes = ?, updated = ? where bid = ? and cid = ? and ind = ?",
-      args: [notes, time, bid, cid, ind],
-    });
+    try {
+      await client.execute({
+        sql: "update labels set notes = ?, updated = ? where bid = ? and cid = ? and ind = ?",
+        args: [notes, time, bid, cid, ind],
+      });
+    } catch (err) {
+      console.error(err);
+    }
   }
 
   return (

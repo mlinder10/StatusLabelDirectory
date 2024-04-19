@@ -138,6 +138,8 @@ export default function Editor() {
     console.log("Editor: ", empty)
   }, [empty])
 
+  console.log("render", empty)
+
   return (
     <EditorProvider
       slotBefore={<MenuBar setEmpty={setEmpty} />}

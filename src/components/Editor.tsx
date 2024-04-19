@@ -37,8 +37,9 @@ function MenuBar({ setEmpty }: MenuBarProps) {
     const text = editor.getText();
     const html = editor.getHTML();
     console.log(html, text)
+    console.log(text === "" || text === "\"\"", text)
     setNotes(html);
-    setEmpty(editor.getText() === "");
+    setEmpty(text === "" || text === "\"\"");
 
     function handleChange() {
       postNotesChange();
@@ -134,11 +135,6 @@ const extensions = [
 export default function Editor() {
   const { notes } = useContext(NotesContext);
   const [empty, setEmpty] = useState(notes === "");
-
-  useEffect(() => {
-    if (!notes) return;
-    setEmpty(notes === "");
-  }, [notes]);
 
   return (
     <EditorProvider

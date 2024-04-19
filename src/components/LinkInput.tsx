@@ -1,8 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
+import styles from "../styles/label.module.css";
 
 type LinkInputProps = {
   link: string;
-  setLink: Dispatch<SetStateAction<string>>
+  setLink: Dispatch<SetStateAction<string>>;
 };
 
 export default function LinkInput({ link, setLink }: LinkInputProps) {
@@ -11,7 +12,7 @@ export default function LinkInput({ link, setLink }: LinkInputProps) {
   }
 
   return (
-    <div>
+    <div className={styles["link-container"]}>
       <input
         type="text"
         value={link}

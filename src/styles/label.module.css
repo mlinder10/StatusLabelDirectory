@@ -52,3 +52,26 @@
 .date {
   font-size: 0.8rem;
 }
+
+.link-container {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+
+  input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: var(--txt);
+    font-size: 0.8rem;
+  }
+
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: var(--accent);
+    text-decoration: underline;
+  }
+}

@@ -41,32 +41,49 @@ export default function ColumnView({
           <div className={styles["header-title"]}>
             <p>Label</p>
             <VscInfo className={styles["info-icon"]} />
-            <span className={styles["info-text"]}>Some text</span>
+            <span className={styles["info-text"]}>
+              Name of the label as it appears on this board
+            </span>
           </div>
           <div className={styles["header-title"]}>
             <p>Notes</p>
             <VscInfo className={styles["info-icon"]} />
-            <span className={styles["info-text"]}>Some text</span>
+            <span className={styles["info-text"]}>
+              Space to add rich text documentation for processes and SOPs
+              associated with this label
+            </span>
           </div>
           <div className={styles["header-title"]}>
             <p>Link</p>
             <VscInfo className={styles["info-icon"]} />
-            <span className={styles["info-text"]}>Some text</span>
+            <span className={styles["info-text"]}>
+              Space to add a link to any outside materials associated with this
+              label such as videos, or other documents
+            </span>
           </div>
           <div className={styles["header-title"]}>
             <p>Creator</p>
             <VscInfo className={styles["info-icon"]} />
-            <span className={styles["info-text"]}>Some text</span>
+            <span className={styles["info-text"]}>
+              Document here who is the creator of any documentation available
+              here in the Directory
+            </span>
           </div>
           <div className={styles["header-title"]}>
             <p>Last Updated</p>
             <VscInfo className={styles["info-icon"]} />
-            <span className={styles["info-text"]}>Some text</span>
+            <span className={styles["info-text"]}>
+              Updates automatically when a user changes any field in the
+              directory
+            </span>
           </div>
           <div className={styles["header-title"]}>
             <p>Hide</p>
             <VscInfo className={styles["info-icon"]} />
-            <span className={styles["info-text"]}>Some text</span>
+            <span className={styles["info-text"]}>
+              Press the icon below to hide any labels that don't require
+              documentation
+            </span>
           </div>
         </div>
         {column.labels.map((label) => (

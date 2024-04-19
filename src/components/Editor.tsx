@@ -36,10 +36,8 @@ function MenuBar({ setEmpty }: MenuBarProps) {
     if (!editor) return;
     const text = editor.getText();
     const html = editor.getHTML();
-    console.log(html, text)
-    console.log(text === "" || text === "\"\"", text)
     setNotes(html);
-    setEmpty(text === "" || text === "\"\"");
+    setEmpty(text === "" || text === '""');
 
     function handleChange() {
       postNotesChange();
@@ -48,7 +46,7 @@ function MenuBar({ setEmpty }: MenuBarProps) {
 
     const timeoutId = setTimeout(handleChange, 1000);
     return () => clearTimeout(timeoutId);
-  }, [editor?.getHTML()]);
+  }, [editor]);
 
   if (!editor) {
     return null;

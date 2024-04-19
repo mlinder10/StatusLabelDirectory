@@ -4,6 +4,7 @@ import { postLabel } from "../config/helpers";
 import styles from "../styles/label.module.css";
 import { VscEye, VscFile } from "react-icons/vsc";
 import { NotesContext } from "../contexts/NotesProvider";
+import LinkInput from "./LinkInput";
 
 type LabelViewProps = {
   label: Label;
@@ -64,13 +65,7 @@ export default function LabelView({
       <button onClick={handleOpenNotes} className={styles["open-btn"]}>
         <VscFile />
       </button>
-      <input
-        type="text"
-        value={link}
-        onChange={(e) => setLink(e.target.value)}
-        placeholder="Link"
-        className={styles["hover-input"]}
-      />
+      <LinkInput link={link} setLink={setLink} />
       <input
         type="text"
         value={creator}

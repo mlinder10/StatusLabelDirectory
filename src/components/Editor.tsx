@@ -134,6 +134,10 @@ export default function Editor() {
   const { notes } = useContext(NotesContext);
   const [empty, setEmpty] = useState(notes === "");
 
+  useEffect(() => {
+    console.log("Editor: ", empty)
+  }, [empty])
+
   return (
     <EditorProvider
       slotBefore={<MenuBar setEmpty={setEmpty} />}

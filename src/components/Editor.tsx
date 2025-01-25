@@ -44,6 +44,7 @@ function MenuBar({ setEmpty }: MenuBarProps) {
       updateNotes(cid, ind, html);
     }
 
+    if (text === "" || text === '""') return;
     const timeoutId = setTimeout(handleChange, 1000);
     return () => clearTimeout(timeoutId);
   }, [editor]);
@@ -135,10 +136,10 @@ export default function Editor() {
   const [empty, setEmpty] = useState(notes === "");
 
   useEffect(() => {
-    console.log("Editor: ", empty)
-  }, [empty])
+    console.log("Editor: ", empty);
+  }, [empty]);
 
-  console.log("render", empty)
+  console.log("render", empty);
 
   return (
     <EditorProvider

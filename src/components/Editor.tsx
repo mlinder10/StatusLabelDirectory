@@ -44,7 +44,6 @@ function MenuBar({ setEmpty }: MenuBarProps) {
       updateNotes(cid, ind, html);
     }
 
-    if (text === "" || text === '""') return;
     const timeoutId = setTimeout(handleChange, 1000);
     return () => clearTimeout(timeoutId);
   }, [editor]);

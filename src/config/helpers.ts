@@ -125,6 +125,14 @@ export async function postLabel(
     return;
   }
 
+  if (notes === "") {
+    await client.execute({
+      sql: "update labels set link = ?, creator = ?, updated = ? where bid = ? and cid = ? and ind = ?",
+      args: [link, creator, time, label.bid, label.cid, label.ind],
+    });
+    return;
+  }
+
   await client.execute({
     sql: "update labels set notes = ?, link = ?, creator = ?, updated = ? where bid = ? and cid = ? and ind = ?",
     args: [notes, link, creator, time, label.bid, label.cid, label.ind],

@@ -4,7 +4,7 @@ import mondaySdk from "monday-sdk-js";
 const client = createClient({
   url: "libsql://sld-mlinder10.turso.io",
   authToken:
-    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MTE1OTEzMDUsImlkIjoiYmVhNjVkNzQtNDRiNS00MDljLTg4YmItMWZhNzRhMzIxY2FjIn0.V2UweIeVxteKbha_xP4Q_rA3cHjLNeSy9N42aBI8np3cfQNkSeUXnrDDHJOwTRFyTwQhdvwG67_BrozqEX2LBA",
+    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MzgwNzkwOTAsImlkIjoiODZjYTBiY2QtZWM4YS00ZDg2LWFiY2UtMWQ0M2VlNjZjMWFiIn0.ymlbjdFcC6gABlvwaClOiAKGd9ObTGmdvwAgUypnzRPjiiiKDdnrtW0ivR7GXFqccEHxChgLRNOuRUexY9iUBQ",
 });
 
 export default client;

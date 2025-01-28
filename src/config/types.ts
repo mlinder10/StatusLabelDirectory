@@ -65,7 +65,7 @@ export type Hidden = {
   bid: string;
   cid: string;
   ind: string;
-}
+};
 
 export const mockColumns = [
   {

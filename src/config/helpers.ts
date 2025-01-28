@@ -44,7 +44,7 @@ export function mergeWithDB(
     for (const label of col.labels) {
       let found = false;
       for (const row of rs.rows) {
-        if (row.cid === label.cid && row.ind === label.index) {
+        if (row.cid == label.cid && row.ind == label.index) {
           found = true;
           labels.push({
             bid: label.bid,
@@ -57,6 +57,7 @@ export function mergeWithDB(
             creator: row.creator as string,
             updated: row.updated as string,
           });
+          break;
         }
       }
       if (!found) {
@@ -121,14 +122,6 @@ export async function postLabel(
         creator,
         time,
       ],
-    });
-    return;
-  }
-
-  if (notes === "") {
-    await client.execute({
-      sql: "update labels set link = ?, creator = ?, updated = ? where bid = ? and cid = ? and ind = ?",
-      args: [link, creator, time, label.bid, label.cid, label.ind],
     });
     return;
   }
